@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMUN - Registration</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo"><a href="index.html"><span class="highlight">S</span>MUN</a></div>
+    <ul class="nav-links">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="register.html" class="active">REGISTER</a></li>
+        <li><a href="secretariat.html">SECRETARIAT</a></li>
+        <li><a href="committees.html">COMMITTEES</a></li>
+        <li><a href="resources.html">RESOURCES</a></li>
+        <li><a href="gallery.html">GALLERY</a></li>
+        <li><a href="contact.html">CONTACT US</a></li>
+        <li><button id="theme-toggle">🌙</button></li>
+    </ul>
+</nav>
+
+<!-- Registration Section -->
+<section class="page-content">
+    <h1>Registration</h1>
+    <p>Fill out the form below to secure your place at <span class="highlight">SMUN</span>. We look forward to welcoming you!</p>
+
+    <form class="form-box">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+        <label for="school">School Name</label>
+        <input type="text" id="school" name="school" placeholder="Enter your school" required>
+
+        <label for="grade">Grade</label>
+        <input type="text" id="grade" name="grade" placeholder="Enter your grade/class" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+        <label for="mun-exp">MUN Experience</label>
+        <textarea id="mun-exp" name="mun-exp" rows="4" placeholder="Briefly describe your MUN experience..."></textarea>
+
+        <label for="committee1">First Preferred Committee</label>
+        <select id="committee1" name="committee1" required>
+            <option value="">-- Select First Committee --</option>
+            <option value="UNSC">UNSC</option>
+            <option value="UNGA">UNGA</option>
+            <option value="ECOSOC">ECOSOC</option>
+            <option value="JCC">JCC</option>
+        </select>
+
+        <label for="committee2">Second Preferred Committee</label>
+        <select id="committee2" name="committee2" required>
+            <option value="">-- Select Second Committee --</option>
+            <option value="UNSC">UNSC</option>
+            <option value="UNGA">UNGA</option>
+            <option value="ECOSOC">ECOSOC</option>
+            <option value="JCC">JCC</option>
+        </select>
+
+        <button type="submit" class="btn btn-outline">Submit Registration</button>
+
+    </form>
+</section>
+
+<script>
+    const first = document.getElementById("committee1");
+    const second = document.getElementById("committee2");
+
+    function validateCommittees() {
+      if (first.value && second.value && first.value === second.value) {
+        alert("First and Second Preferred Committees must be different!");
+        second.value = "";
+        second.focus();
+      }
+    }
+
+    first.addEventListener("change", validateCommittees);
+    second.addEventListener("change", validateCommittees);
+</script>
+
+<footer class="footer">
+    <p>&copy; 2025 SMUN | All Rights Reserved</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMUN - Committees</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo"><a href="index.html"><span class="highlight">S</span>MUN</a></div>
+    <ul class="nav-links">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="register.html">REGISTER</a></li>
+        <li><a href="secretariat.html">SECRETARIAT</a></li>
+        <li><a href="committees.html" class="active">COMMITTEES</a></li>
+        <li><a href="resources.html">RESOURCES</a></li>
+        <li><a href="gallery.html">GALLERY</a></li>
+        <li><a href="contact.html">CONTACT US</a></li>
+        <li><button id="theme-toggle">🌙</button></li>
+    </ul>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content fade-out-text">
+        <h1 id="hero-title">Our <span class="highlight">Committees</span></h1>
+        <p id="hero-slogan">Where ideas, diplomacy, and strategy converge.</p>
+    </div>
+
+    <!-- Committee Cards -->
+    <div class="committee-cards">
+    <a href="cabinet.html" class="committee-card" id="cabinet">
+        <span>Cabinet</span>
+    </a>
+    <a href="ipc.html" class="committee-card" id="ipc">
+        <span>IPC</span>
+    </a>
+    <a href="unga.html" class="committee-card" id="disec">
+        <span>UNGA-DISEC</span>
+    </a>
+    <a href="loksabha.html" class="committee-card" id="loksabha">
+        <span>Lok Sabha</span>
+    </a>
+</div>
+
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>&copy; 2025 SMUN | All Rights Reserved</p>
+</footer>
+
+<script>
+    // Fade out hero text and reveal cards
+    window.addEventListener("DOMContentLoaded", () => {
+        const heroContent = document.querySelector(".fade-out-text");
+        const cards = document.querySelector(".committee-cards");
+
+        setTimeout(() => {
+            heroContent.style.opacity = 0;
+            cards.style.opacity = 1;
+            cards.style.transform = "translate(-50%, 0)"; // center alignment
+        }, 1500);
+    });
+</script>
+
+</body>
+</html>

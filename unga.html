@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNGA-DISEC - SMUN</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+          background: #0b0c10;
+          color: #fff;
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+        }
+
+        .unsc-container {
+          max-width: 900px;
+          margin: 50px auto;
+          padding: 40px 60px;
+          animation: fadeInScale 0.7s ease forwards;
+        }
+
+        @keyframes fadeInScale {
+          0% { opacity: 0; transform: scale(0.95); }
+          100% { opacity: 1; transform: scale(1); }
+        }
+
+        .unsc-container h1 {
+          color: var(--highlight);
+          font-size: 3rem;
+          text-align: center;
+          margin-bottom: 50px;
+        }
+
+        .unsc-container p {
+          font-size: 1.1rem;
+          margin: 20px 0;
+          line-height: 1.6;
+          text-align: left;
+          margin-left: 0;
+        }
+
+        .unsc-container span.subheading {
+          font-weight: 600;
+          color: #dfad51;
+          margin-right: 10px;
+        }
+
+        .unsc-container span.content {
+          color: #fff;
+          font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo"><a href="index.html"><span class="highlight">S</span>MUN</a></div>
+    <ul class="nav-links">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="register.html">REGISTER</a></li>
+        <li><a href="secretariat.html">SECRETARIAT</a></li>
+        <li><a href="committees.html" class="active">COMMITTEES</a></li>
+        <li><a href="resources.html">RESOURCES</a></li>
+        <li><a href="gallery.html">GALLERY</a></li>
+        <li><a href="contact.html">CONTACT US</a></li>
+        <li><button id="theme-toggle">🌙</button></li>
+    </ul>
+</nav>
+
+<div class="unsc-container">
+    <h1>UNGA-DISEC</h1>
+
+    <p><span class="subheading">Agenda:</span> <span class="content">Discuss global security challenges and arms control measures.</span></p>
+
+    <p><span class="subheading">Total Delegations:</span> <span class="content">193 Member States</span></p>
+
+    <p><span class="subheading">Chair:</span> <span class="content">Elected President of the UNGA-DISEC Committee.</span></p>
+
+    <p><span class="subheading">Rules of Procedure:</span> <span class="content">UNGA procedures, including voting blocs and moderated caucuses.</span></p>
+</div>
+<footer class="footer">
+    <p>&copy; 2025 SMUN | All Rights Reserved</p>
+</footer>
+</body>
+</html>
