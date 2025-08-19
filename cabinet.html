@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cabinet - SMUN</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
     <script defer src="script.js"></script>
     <style>
         body {
@@ -28,28 +30,33 @@
         }
 
         .cabinet-container h1 {
-          color: var(--highlight);
-          font-size: 3rem;
-          text-align: center;
-          margin-bottom: 50px;
+          font-family: 'Oswald', sans-serif;
+          font-weight: 700;
+          font-size: 60px;
+          letter-spacing: 3px;
+          color: #f5c518;
+          text-transform: uppercase;
+          text-align: center
         }
 
-        .cabinet-container p {
-          font-size: 1.1rem;
-          margin: 20px 0;
+        .committee-font {
+          font-family: 'Poppins', sans-serif;
+          font-size: 20px;
           line-height: 1.6;
           text-align: left;
         }
 
-        .cabinet-container span.subheading {
+        .committee-font .subheading {
           font-weight: 600;
+          margin-right: 8px;
           color: #dfad51;
-          margin-right: 10px;
+          font-size: 18px;
         }
 
-        .cabinet-container span.content {
-          color: #fff;
+        .committee-font .content {
           font-weight: 400;
+          color: #ffffff;
+          font-size: 20px;
         }
     </style>
 </head>
@@ -72,15 +79,19 @@
 
 <div class="cabinet-container">
     <h1>CABINET</h1>
-
-    <p><span class="subheading">Agenda:</span> <span class="content">Formulating policies, drafting legislation, and advising the Head of State.</span></p>
-
-    <p><span class="subheading">Total Members:</span> <span class="content">20</span></p>
-
-    <p><span class="subheading">Chair:</span> <span class="content">Prime Minister or equivalent Cabinet Head.</span></p>
-
-    <p><span class="subheading">Rules of Procedure:</span> <span class="content">Internal cabinet rules, decision-making by majority, confidential discussions, and policy approvals.</span></p>
+    <div class="committee-font">
+        <p><span class="subheading">Agenda:</span> <span class="content"><b>Deliberating on the fall of Singapore and the wider course of the Second World War along with the reconciliation of colonial powers.</b></span></p>
+        <p><span class="subheading"><b>Freeze Date:</b></span> <span class="content"><b>9th February 1942</b></span></p>
+        <p><span class="subheading">Co-Chair:</span> <span class="content">Aarush</span></p>
+        <p><span class="subheading">Co-Chair:</span> <span class="content">Shadan Husham</span></p>
+        <p><span class="subheading">Vice Chair:</span> <span class="content">Sananya</span></p>
+        <p><span class="subheading">Director:</span> <span class="content">Ahmed Hussain</span></p>
+        <p><span class="subheading">Venue:</span> <span class="content">Not Decided</span></p>
+    </div>
 </div>
 
+<footer class="footer">
+    <p>&copy; 2025 SMUN | All Rights Reserved</p>
+</footer>
 </body>
 </html>
