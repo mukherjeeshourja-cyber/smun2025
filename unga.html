@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UNGA-DISEC - SMUN</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
     <script defer src="script.js"></script>
     <style>
         body {
@@ -28,29 +30,33 @@
         }
 
         .unsc-container h1 {
-          color: var(--highlight);
-          font-size: 3rem;
-          text-align: center;
-          margin-bottom: 50px;
+          font-family: 'Oswald', sans-serif;
+          font-weight: 700;
+          font-size: 60px;
+          letter-spacing: 3px;
+          color: #f5c518;
+          text-transform: uppercase;
+          text-align: center
         }
 
-        .unsc-container p {
-          font-size: 1.1rem;
-          margin: 20px 0;
+        .committee-font {
+          font-family: 'Poppins', sans-serif;
+          font-size: 20px;
           line-height: 1.6;
           text-align: left;
-          margin-left: 0;
         }
 
-        .unsc-container span.subheading {
+        .committee-font .subheading {
           font-weight: 600;
+          margin-right: 8px;
           color: #dfad51;
-          margin-right: 10px;
+          font-size: 18px;
         }
 
-        .unsc-container span.content {
-          color: #fff;
+        .committee-font .content {
           font-weight: 400;
+          color: #ffffff;
+          font-size: 20px;
         }
     </style>
 </head>
@@ -73,15 +79,17 @@
 
 <div class="unsc-container">
     <h1>UNGA-DISEC</h1>
-
-    <p><span class="subheading">Agenda:</span> <span class="content">Discuss global security challenges and arms control measures.</span></p>
-
-    <p><span class="subheading">Total Delegations:</span> <span class="content">193 Member States</span></p>
-
-    <p><span class="subheading">Chair:</span> <span class="content">Elected President of the UNGA-DISEC Committee.</span></p>
-
-    <p><span class="subheading">Rules of Procedure:</span> <span class="content">UNGA procedures, including voting blocs and moderated caucuses.</span></p>
+    <div class="committee-font">
+        <p><span class="subheading">Agenda:</span> <span class="content"><b>The Role of Small Arms and Light Weapons in Fueling Intra-State Conflicts.</b></span></p>
+        <p><span class="subheading">Co-Chair:</span> <span class="content">Akashdeep</span></p>
+        <p><span class="subheading">Co-Chair:</span> <span class="content">Ayush</span></p>
+        <p><span class="subheading">Co-Vice Chair:</span> <span class="content">Samrat</span></p>
+        <p><span class="subheading">Co-Vice Chair:</span> <span class="content">Ritankar</span></p>
+        <p><span class="subheading">Director:</span> <span class="content">Ashmit</span></p>
+        <p><span class="subheading">Venue:</span> <span class="content">Not Decided</span></p>
+    </div>
 </div>
+
 <footer class="footer">
     <p>&copy; 2025 SMUN | All Rights Reserved</p>
 </footer>
