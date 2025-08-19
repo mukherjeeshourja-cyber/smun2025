@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lok Sabha - SMUN</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
     <script defer src="script.js"></script>
     <style>
         body {
@@ -28,28 +30,33 @@
         }
 
         .loksabha-container h1 {
-          color: var(--highlight);
-          font-size: 3rem;
-          text-align: center;
-          margin-bottom: 50px;
+          font-family: 'Oswald', sans-serif;
+          font-weight: 700;
+          font-size: 60px;
+          letter-spacing: 3px;
+          color: #f5c518;
+          text-transform: uppercase;
+          text-align: center
         }
 
-        .loksabha-container p {
-          font-size: 1.1rem;
-          margin: 20px 0;
+        .committee-font {
+          font-family: 'Poppins', sans-serif;
+          font-size: 20px;
           line-height: 1.6;
           text-align: left;
         }
 
-        .loksabha-container span.subheading {
+        .committee-font .subheading {
           font-weight: 600;
+          margin-right: 8px;
           color: #dfad51;
-          margin-right: 10px;
+          font-size: 18px;
         }
 
-        .loksabha-container span.content {
-          color: #fff;
+        .committee-font .content {
           font-weight: 400;
+          color: #ffffff;
+          font-size: 20px;
         }
     </style>
 </head>
@@ -72,15 +79,18 @@
 
 <div class="loksabha-container">
     <h1>LOK SABHA</h1>
-
-    <p><span class="subheading">Agenda:</span> <span class="content">Discussing national legislation, budget allocations, and public policy reforms.</span></p>
-
-    <p><span class="subheading">Total Delegations:</span> <span class="content">545</span></p>
-
-    <p><span class="subheading">Chair:</span> <span class="content">Speaker of the House, appointed for the session.</span></p>
-
-    <p><span class="subheading">Rules of Procedure:</span> <span class="content">Formal parliamentary procedures including motions, debates, voting, and question hours.</span></p>
+    <div class="committee-font">
+        <p><span class="subheading">Agenda:</span> <span class="content"><b>Discussing national legislation, budget allocations, and public policy reforms.</b></span></p>
+        <p><span class="subheading">Speaker:</span> <span class="content">Swapnil</span></p>
+        <p><span class="subheading">Deputy Speaker:</span> <span class="content">Shivam</span></p>
+        <p><span class="subheading">Director:</span> <span class="content">Jarhojit</span></p>
+        <p><span class="subheading">Rapporteur:</span> <span class="content">Sambit Roy</span></p>
+        <p><span class="subheading">Venue:</span> <span class="content">Not Decided</span></p>
+    </div>
 </div>
 
+<footer class="footer">
+    <p>&copy; 2025 SMUN | All Rights Reserved</p>
+</footer>
 </body>
 </html>
