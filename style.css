@@ -317,9 +317,10 @@ body {
   box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }
 
-#unsc { background-image: url('images/UNSC.png'); }
-#unga { background-image: url('images/DISEC.png'); }
+#cabinet { background-image: url('images/Cabinet.jpg'); }
+#disec { background-image: url('images/DISEC.png'); }
 #ipc  { background-image: url('images/IPC.jpg'); }
+#loksabha  { background-image: url('images/Loksabha.jpg'); }
 
 /* Hero fade-out text */
 .fade-out-text {
