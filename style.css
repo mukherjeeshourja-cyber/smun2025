@@ -93,12 +93,12 @@ body {
 /* SMUN sits separately */
 .hero-title-wrap {
   margin-bottom: 200px; /* spacing between SMUN and subtitle/buttons */
-  transform: translateY(-60px); /* pushes SMUN upwards */
+  transform: translateY(42px); /* pushes SMUN upwards */
 }
 
 .hero-title {
-  font-family: 'Merriweather', serif;
-  font-size: 120px;   /* huge, responsive */
+  font-family: 'Cinzel', serif;
+  font-size: 118px;   /* huge, responsive */
   font-weight: 800;
   color: white;
   letter-spacing: 6px;
@@ -116,8 +116,8 @@ body {
 }
 
 .hero-subtitle {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.2rem;
+  font-family: 'Playfair Display',serif;
+  font-size: 27px;
   color: #f0f0f0;
   margin-bottom: 30px;
 }
@@ -125,18 +125,19 @@ body {
 /* Buttons (your format kept intact) */
 .hero-buttons {
   display: flex;
-  gap: 15px;
+  gap: 40px;
   justify-content: center;
 }
 
  .btn {
+   font-family: 'Raleway',sans-serif;
    background: linear-gradient(135deg, #ffca28, #ff9800);
-   padding: 12px 24px;
+   padding: 15px 24px;
    border-radius: 8px;
    text-decoration: none;
    color: #111;
    font-weight: bold;
-   font-size: 1.05rem;
+   font-size: 16px;
    cursor: pointer;
    transition: 0.3s ease;
    border: none;
@@ -944,7 +945,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url("BG1.png") no-repeat center center fixed;
+    background: url("images/BG1.png") no-repeat center center fixed;
     background-size: cover;
     z-index: -2;
 }
@@ -973,7 +974,6 @@ body::after {
     font-weight: 300;  /* Lighter */
     text-align: center;
 }
-
 
 
 
