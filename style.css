@@ -38,7 +38,7 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: url("images/BG1.png") no-repeat center center fixed;
+  background: url("BG1.png") no-repeat center center fixed;
   background-size: cover;
   z-index: -2;
 }
@@ -374,10 +374,10 @@ button, .btn {
 }
 
 /* Card backgrounds by id */
-#cabinet   { background-image: url('images/C.png'); }
-#ipc       { background-image: url('images/IPC1.png'); }
-#disec     { background-image: url('images/D.png'); }
-#loksabha  { background-image: url('images/Loksabha.jpg'); }
+#cabinet   { background-image: url('C.png'); }
+#ipc       { background-image: url('IPC1.png'); }
+#disec     { background-image: url('D.png'); }
+#loksabha  { background-image: url('Loksabha.jpg'); }
 
 /* =========================
    COMMITTEE TYPOGRAPHY (for committee pages)
@@ -519,4 +519,5 @@ footer {
   .hero-title { font-size: 48px; }
   .committee-card { width: 220px; height: 260px; }
 }
+
 
