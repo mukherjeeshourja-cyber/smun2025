@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&display=swap');
+
 /* =========================
    VARIABLES & THEME
 ========================= */
@@ -21,9 +22,7 @@
 ========================= */
 * { box-sizing: border-box; }
 
-html, body {
-  height: 100%;
-}
+html, body { height: 100%; }
 
 body {
   margin: 0;
@@ -38,7 +37,7 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: url("BG1.png") no-repeat center center fixed;
+  background: url("images/BG1.png") no-repeat center center fixed;
   background-size: cover;
   z-index: -2;
 }
@@ -51,17 +50,22 @@ body::after {
   z-index: -1;
 }
 
+/* Reduce iOS scroll-jank on mobile */
+@media (max-width: 768px) {
+  body::before { background-attachment: scroll; }
+}
+
 /* Utility */
 .highlight { color: var(--highlight); }
 
 /* =========================
-   NAVBAR
+   NAVBAR (DESKTOP BASE)
 ========================= */
 .navbar {
   font-family: 'Arial', sans-serif;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -78,6 +82,7 @@ body::after {
   font-weight: bold;
 }
 
+/* Desktop nav links */
 .nav-links {
   list-style: none;
   display: flex;
@@ -90,12 +95,21 @@ body::after {
   text-decoration: none;
   color: #fff;
   font-weight: 700;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .nav-links li a:hover,
-.nav-links li a.active {
-  color: var(--highlight);
+.nav-links li a.active { color: var(--highlight); }
+
+.nav-links li a:hover { text-shadow: 0 0 8px var(--highlight); }
+
+/* Hamburger icon (hidden on desktop) */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  color: #FFD700; /* golden */
+  cursor: pointer;
+  user-select: none;
 }
 
 /* =========================
@@ -116,7 +130,7 @@ body::after {
 /* Title stack used on index.html */
 .hero-title-wrap {
   margin-bottom: 200px;            /* SMUN sits above subtitle/buttons */
-  transform: translateY(4px);     /* pushes SMUN upwards visually */
+  transform: translateY(4px);      /* pushes SMUN upwards visually */
 }
 
 .hero-title {
@@ -141,8 +155,8 @@ body::after {
 /* Buttons */
 .button-container {
   display: flex;
-  justify-content: center; /* Centers both buttons horizontally */
-  gap: 40px; /* Adds space between buttons */
+  justify-content: center;
+  gap: 40px;
   margin-top: 30px;
 }
 
@@ -159,8 +173,8 @@ body::after {
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   border: none;
   display: inline-block;
-  width: 200px;       /*  Fixed width for uniform size */
-  text-align: center; /*  Centers text inside button */
+  width: 200px;
+  text-align: center;
 }
 
 .btn:hover {
@@ -174,21 +188,16 @@ body::after {
   background: transparent;
   color: var(--highlight);
 }
-
-.btn-outline:hover {
-  background: var(--highlight);
-  color: #000;
-}
+.btn-outline:hover { background: var(--highlight); color: #000; }
 
 button, .btn {
-  white-space: nowrap;   /* Prevents text from wrapping */
+  white-space: nowrap;
   display: inline-block;
   text-align: center;
   padding: 10px 20px;
   font-size: 16px;
-  min-width: 120px;      /* Optional: keep consistent size */
+  min-width: 120px;
 }
-
 
 /* Sub-hero titles used on committees/secretariat/resources */
 #hero-title {
@@ -205,9 +214,7 @@ button, .btn {
   text-align: center;
 }
 
-.fade-out-text {
-  transition: opacity 1s ease;
-}
+.fade-out-text { transition: opacity 1s ease; }
 
 /* =========================
    ABOUT (Index)
@@ -238,11 +245,7 @@ button, .btn {
   margin-bottom: 20px;
   color: #fff;
 }
-
-.about-card h2 .highlight {
-  color: var(--highlight);
-  font-weight: 700;
-}
+.about-card h2 .highlight { color: var(--highlight); font-weight: 700; }
 
 .about-card p {
   font-family: 'Poppins', sans-serif;
@@ -251,12 +254,10 @@ button, .btn {
   margin-bottom: 20px;
   color: #d9d9d9;
 }
-
 .about-card p:last-child { margin-bottom: 0; }
 
 /* =========================
    GENERIC PAGE CONTENT + FORMS
-   (register.html & resources)
 ========================= */
 .page-content {
   max-width: 700px;
@@ -273,12 +274,7 @@ button, .btn {
   margin-bottom: 10px;
   color: var(--highlight);
 }
-
-.page-content p {
-  font-size: 1.1rem;
-  margin-bottom: 30px;
-  color: #ddd;
-}
+.page-content p { font-size: 1.1rem; margin-bottom: 30px; color: #ddd; }
 
 .form-box {
   display: flex;
@@ -286,14 +282,12 @@ button, .btn {
   gap: 18px;
   text-align: left;
 }
-
 .form-box label {
   font-weight: 600;
   margin-bottom: 5px;
   color: #f0f0f0;
   font-size: 0.95rem;
 }
-
 .form-box input,
 .form-box select,
 .form-box textarea {
@@ -306,10 +300,8 @@ button, .btn {
   transition: all 0.3s ease;
   width: 100%;
 }
-
 .form-box input::placeholder,
 .form-box textarea::placeholder { color: #aaa; }
-
 .form-box input:focus,
 .form-box select:focus,
 .form-box textarea:focus {
@@ -318,53 +310,43 @@ button, .btn {
   outline: none;
   box-shadow: 0 0 10px rgba(255, 193, 7, 0.4);
 }
-
-.form-box textarea {
-  min-height: 120px;
-  resize: vertical;
-}
+.form-box textarea { min-height: 120px; resize: vertical; }
 
 /* =========================
    COMMITTEES (committees.html)
 ========================= */
 .committee-cards {
   position: absolute;
-  top: 1%;                 /* final chosen position */
+  top: 1%;
   left: 50%;
-  transform: translate(-70%, 50px); /* starts offset; script animates to 0 */
+  transform: translate(-50%, 50px);
   display: flex;
   justify-content: center;
   gap: 30px;
   flex-wrap: wrap;
-  opacity: 0;               /* revealed by JS */
-  transition: all 1s ease;
+  opacity: 0;
+  transition: opacity 1s ease, transform 1s ease;
   z-index: 2;
 }
 
-.committee-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+.committee-item { display: flex; flex-direction: column; align-items: center; }
 
 .committee-card {
   width: 300px;
   height: 350px;
   border-radius: 15px;
-  background-size: contain;     /* logos fit inside */
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   display: block;
   box-shadow: 0 10px 25px rgba(0,0,0,0.6);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-color: rgba(11,12,16,0.6); /* slight plate behind logos */
+  background-color: rgba(11,12,16,0.6);
 }
-
 .committee-card:hover {
   transform: scale(1.05);
   box-shadow: 0 20px 40px rgba(0,0,0,0.7);
 }
-
 .committee-name {
   margin-top: 12px;
   font-size: 1.2rem;
@@ -374,14 +356,13 @@ button, .btn {
 }
 
 /* Card backgrounds by id */
-#cabinet   { background-image: url('C.png'); }
-#ipc       { background-image: url('IPC1.png'); }
-#disec     { background-image: url('D.png'); }
-#loksabha  { background-image: url('Loksabha.jpg'); }
+#cabinet   { background-image: url('images/C.png'); }
+#ipc       { background-image: url('images/IPC1.png'); }
+#disec     { background-image: url('images/D.png'); }
+#loksabha  { background-image: url('images/Loksabha.jpg'); }
 
 /* =========================
-   COMMITTEE TYPOGRAPHY (for committee pages)
-   These classes exist in your HTMLs already.
+   COMMITTEE TYPOGRAPHY
 ========================= */
 .committee-font {
   font-family: 'Poppins', sans-serif;
@@ -389,21 +370,19 @@ button, .btn {
   line-height: 1.6;
   text-align: left;
 }
-
 .committee-font .subheading {
   font-weight: 600;
   margin-right: 8px;
   color: var(--highlight);
   font-size: 18px;
 }
-
 .committee-font .content {
   font-weight: 400;
   color: #ffffff;
   font-size: 20px;
 }
 
-/* IPC page uses an oversized title */
+/* IPC page oversized title */
 .oswald-font {
   font-family: 'Oswald', sans-serif;
   font-weight: 700;
@@ -414,13 +393,9 @@ button, .btn {
 }
 
 /* =========================
-   CONTACT (keep lean & dark)
-   (Your contact.html isn’t in this bundle; keeping generic styles)
+   CONTACT
 ========================= */
-.contact-page {
-  text-align: center;
-  padding: 50px 20px;
-}
+.contact-page { text-align: center; padding: 50px 20px; }
 
 .contact-box {
   display: inline-block;
@@ -435,18 +410,10 @@ button, .btn {
   width: 100%;
   max-width: 550px;
 }
-
-.contact-box p {
-  margin: 15px 0;
-  font-size: 1.1rem;
-}
-
+.contact-box p { margin: 15px 0; font-size: 1.1rem; }
 .contact-box i { margin-right: 8px; color: var(--highlight); }
 
-.social-icons {
-  margin-top: 20px;
-}
-
+.social-icons { margin-top: 20px; }
 .social-icons a {
   display: inline-block;
   margin: 0 15px;
@@ -454,17 +421,12 @@ button, .btn {
   color: #fff;
   transition: color 0.3s ease, transform 0.3s ease;
 }
-
-.social-icons a:hover {
-  color: var(--highlight);
-  transform: translateY(-2px);
-}
+.social-icons a:hover { color: var(--highlight); transform: translateY(-2px); }
 
 /* =========================
    FOOTER
 ========================= */
-.footer,
-footer {
+.footer, footer {
   background: #111;
   color: #fff;
   padding: 20px;
@@ -479,12 +441,10 @@ footer {
   from { opacity: 0; transform: translateY(-30px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
@@ -493,31 +453,107 @@ footer {
 }
 
 /* =========================
-   RESPONSIVE
+   RESPONSIVE (TABLET)
 ========================= */
 @media (max-width: 1024px) {
   .hero-title { font-size: 90px; }
 }
 
+/* =========================
+   RESPONSIVE (MOBILE BASE)
+========================= */
 @media (max-width: 768px) {
+  /* Navbar sizing */
   .navbar { padding: 12px 16px; }
-  .nav-links { gap: 12px; }
 
+  /* Show hamburger, convert nav to slide-in panel */
+  .hamburger { display: block; }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 70%;
+    max-width: 300px;
+    background: rgba(0, 0, 0, 0.85);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    padding: 20px 24px;
+    transition: right 0.4s ease-in-out;
+    z-index: 9999;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-links.active { right: 0; }
+
+  /* Link stagger animation */
+  .nav-links li {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .nav-links.active li {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .nav-links li:nth-child(1) { transition-delay: 0.1s; }
+  .nav-links li:nth-child(2) { transition-delay: 0.2s; }
+  .nav-links li:nth-child(3) { transition-delay: 0.3s; }
+  .nav-links li:nth-child(4) { transition-delay: 0.4s; }
+  .nav-links li:nth-child(5) { transition-delay: 0.5s; }
+  .nav-links li:nth-child(6) { transition-delay: 0.6s; }
+
+  /* Hero scale */
   .hero-title { font-size: 64px; letter-spacing: 3px; }
   .hero-title-wrap { margin-bottom: 120px; transform: translateY(24px); }
+  .hero-subtitle { font-size: 22px; }
 
   #hero-title { font-size: 32px; }
   #hero-slogan { font-size: 22px; }
 
-  .committee-card { width: 260px; height: 300px; }
+  /* Button stack on mobile */
+  .button-container {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+  .btn { width: min(320px, 90vw); }
+
+  /* Content spacing */
   .page-content { margin: 30px 16px; padding: 28px; }
   .about { padding: 60px 16px; }
   .about-card { padding: 28px; }
+
+  /* Committees: prevent overflow from absolute layout */
+  .committee-cards {
+    position: static;
+    top: auto; left: auto;
+    transform: none;
+    opacity: 1;              /* ensure visible without JS timing */
+    padding: 10px 0;
+    margin-top: 10px;
+  }
+  .committee-card { width: 260px; height: 300px; }
 }
 
+/* =========================
+   RESPONSIVE (SMALL MOBILE)
+========================= */
 @media (max-width: 480px) {
   .hero-title { font-size: 48px; }
+  .hero-subtitle { font-size: 20px; }
+
   .committee-card { width: 220px; height: 260px; }
+
+  /* Tighter page width */
+  .page-content, .about-card {
+    width: 92%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
-
-
