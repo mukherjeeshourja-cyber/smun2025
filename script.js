@@ -1,17 +1,11 @@
-// Committee Validation
-const firstCommittee = document.getElementById("committee1");
-const secondCommittee = document.getElementById("committee2");
+document.addEventListener("DOMContentLoaded", function () {
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("nav-links");
 
-function validateCommittees() {
-  if (firstCommittee.value && secondCommittee.value && firstCommittee.value === secondCommittee.value) {
-    alert("First and Second Preferred Committees must be different!");
-    secondCommittee.value = "";
-    secondCommittee.focus();
+  if (hamburger && navLinks) {
+    hamburger.addEventListener("click", function () {
+      navLinks.classList.toggle("active");
+    });
   }
-}
-
-firstCommittee.addEventListener("change", validateCommittees);
-secondCommittee.addEventListener("change", validateCommittees);
-
-
+});
 
