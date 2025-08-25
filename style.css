@@ -559,67 +559,81 @@ button, .btn {
 }
 
 /* =========================
-   SECRETARIAT (Team Page)
+   COMMITTEES (committees.html)
 ========================= */
-.secretariat {
-  padding: 80px 20px;
-  text-align: center;
-  background: linear-gradient(to bottom, rgba(11, 12, 16, 0.8), rgba(11, 12, 16, 0.4));
+.secretariat-cards {
+  position: absolute;
+  top: 1%;
+  left: 50%;
+  transform: translate(-50%, 50px);
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  opacity: 0;
+  transition: opacity 1s ease, transform 1s ease;
+  z-index: 2;
 }
 
-.section-title {
-  font-size: 2.5rem;
-  color: var(--text);
-  margin-bottom: 50px;
-}
+.secretariat-item { display: flex; flex-direction: column; align-items: center; }
 
-.secretariat-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 40px;
-  justify-items: center;
-}
-
-.person-card {
-  background: rgba(20, 20, 20, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 30px 20px;
-  text-align: center;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+.secretariat-card {
+  width: 300px;
+  height: 350px;
+  border-radius: 15px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: block;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  max-width: 280px;
+  background-color: rgba(11,12,16,0.6);
+}
+.secretariat-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+}
+.secretariat-name {
+  margin-top: 12px;
+  font-size: 1.2rem;
+  color: #E0E0E0;
+  text-align: center;
+  font-weight: 1000;
 }
 
-.person-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-}
+/* Card backgrounds by id */
+#cabinet   { background-image: url('C.png'); }
+#ipc       { background-image: url('IPC1.png'); }
+#disec     { background-image: url('D.png'); }
+#loksabha  { background-image: url('Loksabha.jpg'); }
 
-.person-card img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--highlight);
-  margin-bottom: 15px;
+/* =========================
+   COMMITTEE TYPOGRAPHY
+========================= */
+.secretariat-font {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  line-height: 1.6;
+  text-align: left;
 }
-
-.person-card h3 {
-  font-size: 1.4rem;
-  color: var(--text);
-  margin: 10px 0 5px;
-}
-
-.person-card .role {
-  color: var(--highlight);
+.secretariat-font .subheading {
   font-weight: 600;
-  margin-bottom: 10px;
-  font-size: 1rem;
+  margin-right: 8px;
+  color: var(--highlight);
+  font-size: 18px;
+}
+.secretariat-font .content {
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 20px;
 }
 
-.person-card .desc {
-  font-size: 0.95rem;
-  color: #ccc;
-  line-height: 1.5;
+/* IPC page oversized title */
+.oswald-font {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 60px;
+  letter-spacing: 3px;
+  color: var(--highlight);
+  text-transform: uppercase;
 }
