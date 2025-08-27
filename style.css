@@ -357,7 +357,7 @@ button, .btn {
 
 /* Card backgrounds by id */
 #cabinet   { background-image: url('C.png'); }
-#ipc       { background-image: url('IPC1.jpg'); }
+#ipc       { background-image: url('IPC1.png'); }
 #disec     { background-image: url('D.png'); }
 #loksabha  { background-image: url('Loksabha.jpg'); }
 
@@ -705,5 +705,6 @@ button, .btn {
         margin-top: 10px;
     }
 }
+
 
 
