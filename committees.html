@@ -21,15 +21,14 @@
 
     <!-- Nav Links -->
     <ul class="nav-links" id="nav-links">
-        <li><a href="index.html" class="active">HOME</a></li>
+        <li><a href="index.html">HOME</a></li>
         <li><a href="register.html">REGISTER</a></li>
         <li><a href="secretariat.html">SECRETARIAT</a></li>
-        <li><a href="committees.html">COMMITTEES</a></li>
+        <li><a href="committees.html" class="active">COMMITTEES</a></li>
         <li><a href="resources.html">RESOURCES</a></li>
         <li><a href="contact.html">CONTACT US</a></li>
     </ul>
 </nav>
-
 
 <!-- Hero Section -->
 <section class="hero">
@@ -42,22 +41,22 @@
     <!-- Committee Cards -->
     <div class="committee-cards">
         <div class="committee-item">
-            <a href="cabinet.html" class="committee-card" id="cabinet"></a>
+            <a href="cabinet.html" class="committee-card card--border-glow" id="cabinet"></a>
             <h3 class="committee-name">Churchill's War Cabinet</h3>
         </div>
 
         <div class="committee-item">
-            <a href="ipc.html" class="committee-card" id="ipc"></a>
+            <a href="ipc.html" class="committee-card card--border-glow" id="ipc"></a>
             <h3 class="committee-name">International Press Corps</h3>
         </div>
 
         <div class="committee-item">
-            <a href="unga.html" class="committee-card" id="disec"></a>
+            <a href="unga.html" class="committee-card card--border-glow" id="disec"></a>
             <h3 class="committee-name">UNGA – DISEC</h3>
         </div>
 
         <div class="committee-item">
-            <a href="loksabha.html" class="committee-card" id="loksabha"></a>
+            <a href="loksabha.html" class="committee-card card--border-glow" id="loksabha"></a>
             <h3 class="committee-name">Lok Sabha</h3>
         </div>
     </div>
@@ -81,6 +80,16 @@
                 cards.style.opacity = 1;
                 cards.style.transform = "translate(-50%, 0)"; // center alignment
             }, 1500);
+        });
+        document.querySelectorAll('.card--border-glow').forEach(card => {
+        card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+        card.style.setProperty('--glow-x', `${x}%`);
+        card.style.setProperty('--glow-y', `${y}%`);
+            });
         });
     </script>
 
