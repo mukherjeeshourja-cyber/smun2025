@@ -1,710 +1,855 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&display=swap');
-
-/* =========================
-   VARIABLES & THEME
-========================= */
-:root {
-  --bg: #0b0c10;
-  --text: #f5f5f5;
-  --highlight: #dfad51;
-  --muted: #ddd;
-}
-
-.light-theme {
-  --bg: #f5f5f5;
-  --text: #111;
-  --highlight: #3f48cc;
-  --muted: #333;
-}
-
-/* =========================
-   GLOBAL / RESET
-========================= */
-* { box-sizing: border-box; }
-
-html, body { height: 100%; }
-
-body {
-  margin: 0;
-  font-family: Work Sans, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-/* Full-screen background image + overlay (latest design) */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: url("BG1.png") no-repeat center center fixed;
-  background-size: cover;
-  z-index: -2;
-}
-
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: -1;
-}
-
-/* Reduce iOS scroll-jank on mobile */
-@media (max-width: 768px) {
-  body::before { background-attachment: scroll; }
-}
-
-/* Utility */
-.highlight { color: var(--highlight); }
-
-/* =========================
-   NAVBAR (DESKTOP BASE)
-========================= */
-.navbar {
-  font-family: 'Arial', sans-serif;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
-  background: rgba(0, 0, 0, 0.85);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-}
-
-.navbar .logo a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 22px;
-  font-weight: bold;
-}
-
-/* Desktop nav links */
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links li a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: 700;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-.nav-links li a:hover,
-.nav-links li a.active { color: var(--highlight); }
-
-.nav-links li a:hover { text-shadow: 0 0 8px var(--highlight); }
-
-/* Hamburger icon (hidden on desktop) */
-.hamburger {
-  display: none;
-  font-size: 28px;
-  color: #FFD700; /* golden */
-  cursor: pointer;
-  user-select: none;
-}
-
-/* =========================
-   HERO (Transparent over BG)
-========================= */
-.hero {
-  position: relative;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  text-align: center;
-  overflow: hidden;
-}
-
-/* Title stack used on index.html */
-.hero-title-wrap {
-  margin-bottom: 200px;            /* SMUN sits above subtitle/buttons */
-  transform: translateY(4px);      /* pushes SMUN upwards visually */
-}
-
-.hero-title {
-  font-family: 'Cinzel', serif;
-  font-size: 118px;
-  font-weight: 800;
-  color: #fff;
-  letter-spacing: 6px;
-  line-height: 1;
-}
-.hero-title .gold { color: #dfad51; }
-
-.hero-content { z-index: 2; }
-
-.hero-subtitle {
-  font-family: 'Playfair Display', serif;
-  font-size: 27px;
-  color: #f0f0f0;
-  margin-bottom: 30px;
-}
-
-/* Buttons */
-.button-container {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin-top: 30px;
-}
-
-.btn {
-  font-family: 'Raleway', sans-serif;
-  background: linear-gradient(135deg, #ffca28, #ff9800);
-  padding: 15px 24px;
-  border-radius: 8px;
-  text-decoration: none;
-  color: #111;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-  border: none;
-  display: inline-block;
-  width: 200px;
-  text-align: center;
-}
-
-.btn:hover {
-  background: linear-gradient(135deg, #ffc107, #ff6f00);
-  transform: translateY(-4px);
-  box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
-}
-
-.btn-outline {
-  border: 2px solid var(--highlight);
-  background: transparent;
-  color: var(--highlight);
-}
-.btn-outline:hover { background: var(--highlight); color: #000; }
-
-button, .btn {
-  white-space: nowrap;
-  display: inline-block;
-  text-align: center;
-  padding: 10px 20px;
-  font-size: 16px;
-  min-width: 120px;
-}
-
-/* Sub-hero titles used on committees/secretariat/resources */
-#hero-title {
-  font-size: 40px;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 1rem;
-}
-#hero-title .highlight { color: var(--highlight); }
-
-#hero-slogan {
-  font-size: 30px;
-  font-weight: 300;
-  text-align: center;
-}
-
-.fade-out-text { transition: opacity 1s ease; }
-
-/* =========================
-   ABOUT (Index)
-========================= */
-.about {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 80px 20px;
-  background: linear-gradient(to bottom, rgba(13,13,13,0.7), rgba(20,20,20,0.4));
-  color: #f5f5f5;
-}
-
-.about-card {
-  max-width: 900px;
-  width: 100%;
-  padding: 40px;
-  background: rgba(20, 20, 20, 0.85);
-  border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-  text-align: center;
-  border-top: 3px solid var(--highlight);
-}
-
-.about-card h2 {
-  font-family: 'Merriweather', serif;
-  font-size: 2.2rem;
-  margin-bottom: 20px;
-  color: #fff;
-}
-.about-card h2 .highlight { color: var(--highlight); font-weight: 700; }
-
-.about-card p {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.05rem;
-  line-height: 1.7;
-  margin-bottom: 20px;
-  color: #d9d9d9;
-}
-.about-card p:last-child { margin-bottom: 0; }
-
-/* =========================
-   GENERIC PAGE CONTENT + FORMS
-========================= */
-.page-content {
-  max-width: 700px;
-  margin: 50px auto;
-  padding: 40px;
-  background: rgba(20, 20, 20, 0.9);
-  border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-  text-align: center;
-}
-
-.page-content h1 {
-  font-size: 2.4rem;
-  margin-bottom: 10px;
-  color: var(--highlight);
-}
-.page-content p { font-size: 1.1rem; margin-bottom: 30px; color: #ddd; }
-
-.form-box {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  text-align: left;
-}
-.form-box label {
-  font-weight: 600;
-  margin-bottom: 5px;
-  color: #f0f0f0;
-  font-size: 0.95rem;
-}
-.form-box input,
-.form-box select,
-.form-box textarea {
-  padding: 14px 16px;
-  border-radius: 10px;
-  border: 1px solid #333;
-  background: #111;
-  color: #fff;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  width: 100%;
-}
-.form-box input::placeholder,
-.form-box textarea::placeholder { color: #aaa; }
-.form-box input:focus,
-.form-box select:focus,
-.form-box textarea:focus {
-  border-color: var(--highlight);
-  background: #1a1a1a;
-  outline: none;
-  box-shadow: 0 0 10px rgba(255, 193, 7, 0.4);
-}
-.form-box textarea { min-height: 120px; resize: vertical; }
-
-/* =========================
-   COMMITTEES (committees.html)
-========================= */
-.committee-cards {
-  position: absolute;
-  top: 1%;
-  left: 50%;
-  transform: translate(-50%, 50px);
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-  opacity: 0;
-  transition: opacity 1s ease, transform 1s ease;
-  z-index: 2;
-}
-
-.committee-item { display: flex; flex-direction: column; align-items: center; }
-
-.committee-card {
-  width: 300px;
-  height: 350px;
-  border-radius: 15px;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: block;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-color: rgba(11,12,16,0.6);
-}
-.committee-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.7);
-}
-.committee-name {
-  margin-top: 12px;
-  font-size: 1.2rem;
-  color: #E0E0E0;
-  text-align: center;
-  font-weight: 1000;
-}
-
-/* Card backgrounds by id */
-#cabinet   { background-image: url('C.png'); }
-#ipc       { background-image: url('IPC1.png'); }
-#disec     { background-image: url('D.png'); }
-#loksabha  { background-image: url('Loksabha.jpg'); }
-
-
-.card--border-glow::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    padding: 8px;
-    background: radial-gradient(
-        var(--glow-radius) circle at var(--glow-x) var(--glow-y),
-            rgba(255, 215, 0, calc(var(--glow-intensity) * 0.5)) 0%,
-            rgba(255, 215, 0, calc(var(--glow-intensity) * 0.25)) 30%,
-        transparent 60%
-    );
-    border-radius: inherit;
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: subtract;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    filter: blur(10px);
-    z-index: 1;
-}
-.card--border-glow:hover::after {
-    opacity:1;
-}
-
-/* =========================
-   COMMITTEE TYPOGRAPHY
-========================= */
-.committee-font {
-  font-family: 'Poppins', sans-serif;
-  font-size: 20px;
-  line-height: 1.6;
-  text-align: left;
-}
-.committee-font .subheading {
-  font-weight: 600;
-  margin-right: 8px;
-  color: var(--highlight);
-  font-size: 18px;
-}
-.committee-font .content {
-  font-weight: 400;
-  color: #ffffff;
-  font-size: 20px;
-}
-
-/* IPC page oversized title */
-.oswald-font {
-  font-family: 'Oswald', sans-serif;
-  font-weight: 700;
-  font-size: 60px;
-  letter-spacing: 3px;
-  color: var(--highlight);
-  text-transform: uppercase;
-}
-
-/* =========================
-   CONTACT
-========================= */
-.contact-page { text-align: center; padding: 50px 20px; }
-
-.contact-box {
-  display: inline-block;
-  background: rgba(17, 17, 17, 0.7);
-  backdrop-filter: blur(6px);
-  color: #fff;
-  padding: 25px 40px;
-  border-radius: 12px;
-  margin-bottom: 30px;
-  text-align: left;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  width: 100%;
-  max-width: 550px;
-}
-.contact-box p { margin: 15px 0; font-size: 1.1rem; }
-.contact-box i { margin-right: 8px; color: var(--highlight); }
-
-.social-icons { margin-top: 20px; }
-.social-icons a {
-  display: inline-block;
-  margin: 0 15px;
-  font-size: 2rem;
-  color: #fff;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-.social-icons a:hover { color: var(--highlight); transform: translateY(-2px); }
-
-/* =========================
-   FOOTER
-========================= */
-.footer, footer {
-  background: #111;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-  margin-top: 50px;
-}
-
-/* =========================
-   ANIMATIONS
-========================= */
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-30px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 1.2s ease forwards;
-  animation-delay: 0.4s;
-}
-
-/* =========================
-   RESPONSIVE (TABLET)
-========================= */
-@media (max-width: 1024px) {
-  .hero-title { font-size: 90px; }
-}
-
-/* =========================
-   RESPONSIVE (MOBILE BASE)
-========================= */
-@media (max-width: 768px) {
-  /* Navbar sizing */
-  .navbar { padding: 12px 16px; }
-
-  /* Show hamburger, convert nav to slide-in panel */
-  .hamburger { display: block; }
-
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    height: 100vh;
-    width: 70%;
-    max-width: 300px;
-    background: rgba(0, 0, 0, 0.85);
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 25px;
-    padding: 20px 24px;
-    transition: right 0.4s ease-in-out;
-    z-index: 9999;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  .nav-links.active { right: 0; }
-
-  /* Link stagger animation */
-  .nav-links li {
-    opacity: 0;
-    transform: translateX(30px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-  .nav-links.active li {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  .nav-links li:nth-child(1) { transition-delay: 0.1s; }
-  .nav-links li:nth-child(2) { transition-delay: 0.2s; }
-  .nav-links li:nth-child(3) { transition-delay: 0.3s; }
-  .nav-links li:nth-child(4) { transition-delay: 0.4s; }
-  .nav-links li:nth-child(5) { transition-delay: 0.5s; }
-  .nav-links li:nth-child(6) { transition-delay: 0.6s; }
-
-  /* Hero scale */
-  .hero-title { font-size: 64px; letter-spacing: 3px; }
-  .hero-title-wrap { margin-bottom: 120px; transform: translateY(24px); }
-  .hero-subtitle { font-size: 22px; }
-
-  #hero-title { font-size: 32px; }
-  #hero-slogan { font-size: 22px; }
-
-  /* Button stack on mobile */
-  .button-container {
-    flex-direction: column;
-    gap: 16px;
-    align-items: center;
-  }
-  .btn { width: min(320px, 90vw); }
-
-  /* Content spacing */
-  .page-content { margin: 30px 16px; padding: 28px; }
-  .about { padding: 60px 16px; }
-  .about-card { padding: 28px; }
-
-  /* Committees: prevent overflow from absolute layout */
-  .committee-cards {
-    position: static;
-    top: auto; left: auto;
-    transform: none;
-    opacity: 1;              /* ensure visible without JS timing */
-    padding: 10px 0;
-    margin-top: 10px;
-  }
-  .committee-card { width: 260px; height: 300px; }
-}
-
-/* =========================
-   RESPONSIVE (SMALL MOBILE)
-========================= */
-@media (max-width: 480px) {
-  .hero-title { font-size: 48px; }
-  .hero-subtitle { font-size: 20px; }
-
-  .committee-card { width: 220px; height: 260px; }
-
-  /* Tighter page width */
-  .page-content, .about-card {
-    width: 92%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-.card--border-glow {
-    position: relative;
-    --glow-radius: 500px;
-    --glow-intensity: 1;
-    --glow-x: 50%;
-    --glow-y: 50%;
-}
-
-/* Contact Page Styles */
-.page-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;  /* Vertical center */
-    align-items: center;      /* Horizontal center */
-    min-height: 40vh;        /* Full viewport height */
-    text-align: center;
-    color: #fff;
-    padding: 20px;
-}
-.page-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-.page-content p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    color: #ccc;
-}
-
-.contact-box {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-}
-
-.card {
-    background: #1b1b1b;
-    width: 90%;
-    border-radius: 12px;
-    padding: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-}
-
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
-}
-
-.main {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.info {
-    text-align: left;
-    font-size: 1rem;
-}
-
-.social {
-    display: flex;
-    gap: 15px;
-    font-size: 1.5rem;
-}
-
-.social a {
-    color: #aaa;
-    transition: color 0.3s ease;
-}
-
-.social a.instagram:hover {
-    color: #e1306c;
-}
-
-.social a.telegram:hover {
-    color: #29b6f6;
-}
-
-.social a.reddit:hover {
-    color: #ff4500;
-}
-
-.social a.youtube:hover {
-    color: #ff0000;
-}
-
-/* From Your Shared CSS (Adapted for first 2 cards) */
-.card:nth-child(1) .telegram {
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
-}
-
-.card:nth-child(2) .reddit {
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
-}
-
-.card:hover .telegram,
-.card:hover .reddit {
-    opacity: 1;
-}
-
-.main:hover {
-    cursor: pointer;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .main {
+    @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&display=swap');
+
+    /* =========================
+       VARIABLES & THEME
+    ========================= */
+    :root {
+      --bg: #0b0c10;
+      --text: #f5f5f5;
+      --highlight: #dfad51;
+      --muted: #ddd;
+    }
+
+    .light-theme {
+      --bg: #f5f5f5;
+      --text: #111;
+      --highlight: #3f48cc;
+      --muted: #333;
+    }
+
+    /* =========================
+       GLOBAL / RESET
+    ========================= */
+    * { box-sizing: border-box; }
+
+    html, body { height: 100%; }
+
+    body {
+      margin: 0;
+      font-family: Work Sans, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    /* Full-screen background image + overlay (latest design) */
+    /* ---------------------------
+       Responsive background with adjustable focal point
+       --------------------------- */
+
+    /* default focal point variables (centered) */
+    :root {
+      --bg-pos-x: center;
+      --bg-pos-y: center; /* adjust these if needed */
+    }
+
+    /* Full-screen background image + overlay (updated) */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      /* use CSS vars for position so we can adjust per breakpoint */
+      background: url("images/BG1.png") no-repeat var(--bg-pos-x) var(--bg-pos-y) fixed;
+      background-size: cover;           /* default: fill while cropping */
+      background-repeat: no-repeat;
+      z-index: -2;
+      will-change: background-position;
+    }
+
+    /* dark overlay unchanged */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: -1;
+    }
+
+    /* reduce iOS scroll-jank but override focal point on small screens below */
+    @media (max-width: 1024px) {
+      /* push focal higher so emblem moves into view for many tablets */
+      :root { --bg-pos-y: 40%; }
+      body::before { background-attachment: scroll; } /* better on some mobile browsers */
+    }
+
+    @media (max-width: 768px) {
+      /* mobile: shift image upward so emblem sits visually centered on narrow viewports */
+      :root { --bg-pos-y: 30%; }
+      body::before {
+        /* keep cover (fills screen) but with shifted focal point */
+        background-size: cover;
+        background-attachment: scroll;
+      }
+    }
+
+    /* very small phones: switch to contain if emblem must be fully visible (no cropping) */
+    @media (max-width: 420px) {
+      :root { --bg-pos-y: 22%; }         /* tweak if emblem still high/low */
+      body::before {
+        /* uncomment the next line if you want the emblem always fully visible on tiny screens */
+        /* background-size: contain; */
+        /* if you use contain, expect letterboxing (empty spaces) — you can keep overlay to hide it */
+        background-attachment: scroll;
+      }
+    }
+
+    /* Optional: a tiny performance friendly hint for some mobile browsers */
+    @media (pointer: coarse) and (max-width: 768px) {
+      body::before { background-attachment: scroll; }
+    }
+
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: -1;
+    }
+
+    /* Reduce iOS scroll-jank on mobile */
+    @media (max-width: 768px) {
+      body::before { background-attachment: scroll; }
+    }
+
+    /* Utility */
+    .highlight { color: var(--highlight); }
+
+    /* =========================
+       NAVBAR (DESKTOP BASE)
+    ========================= */
+    .navbar {
+      font-family: 'Arial', sans-serif;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: rgba(0, 0, 0, 0.85);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+    }
+
+    .navbar .logo a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    /* Desktop nav links */
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 700;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .nav-links li a:hover,
+    .nav-links li a.active { color: var(--highlight); }
+
+    .nav-links li a:hover { text-shadow: 0 0 8px var(--highlight); }
+
+    /* Hamburger icon (hidden on desktop) */
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      color: #FFD700; /* golden */
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* =========================
+       HERO (Transparent over BG)
+    ========================= */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Title stack used on index.html */
+    .hero-title-wrap {
+      margin-bottom: 200px;            /* SMUN sits above subtitle/buttons */
+      transform: translateY(4px);      /* pushes SMUN upwards visually */
+    }
+
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: 140px;
+      font-weight: 1000;
+      color: #fff;
+      letter-spacing: 6px;
+      line-height: 1;
+    }
+    .hero-title .gold { color: #dfad51; }
+
+    .hero-content { z-index: 2; }
+
+    .hero-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: 27px;
+      color: #f0f0f0;
+      margin-bottom: 30px;
+    }
+
+    /* Buttons */
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      font-family: 'Raleway', sans-serif;
+      background: linear-gradient(135deg, #ffca28, #ff9800);
+      padding: 15px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #111;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      border: none;
+      display: inline-block;
+      width: 200px;
+      text-align: center;
+    }
+
+    .btn:hover {
+      background: linear-gradient(135deg, #ffc107, #ff6f00);
+      transform: translateY(-4px);
+      box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--highlight);
+      background: transparent;
+      color: var(--highlight);
+    }
+    .btn-outline:hover { background: var(--highlight); color: #000; }
+
+    button, .btn {
+      white-space: nowrap;
+      display: inline-block;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 16px;
+      min-width: 120px;
+    }
+
+    /* Sub-hero titles used on committees/secretariat/resources */
+    #hero-title {
+      font-size: 40px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    #hero-title .highlight { color: var(--highlight); }
+
+    #hero-slogan {
+      font-size: 30px;
+      font-weight: 300;
+      text-align: center;
+    }
+
+    .fade-out-text { transition: opacity 1s ease; }
+
+    /* =========================
+       ABOUT (Index)
+    ========================= */
+    .about {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 8px 40px;
+      background: linear-gradient(to bottom, rgba(13,13,13,0.7), rgba(20,20,20,0.4));
+      color: #f5f5f5;
+    }
+
+    .about-card {
+      max-width: 900px;
+      width: 100%;
+      padding: 40px;
+      background: rgba(20, 20, 20, 0.85);
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      border-top: 3px solid var(--highlight);
+    }
+
+    .about-card h2 {
+      font-family: 'Merriweather', serif;
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    .about-card h2 .highlight { color: var(--highlight); font-weight: 700; }
+
+    .about-card p {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      color: #d9d9d9;
+    }
+    .about-card p:last-child { margin-bottom: 0; }
+
+    /* =========================
+       GENERIC PAGE CONTENT + FORMS
+    ========================= */
+    .page-content {
+      max-width: 700px;
+      margin: 50px auto;
+      padding: 40px;
+      background: rgba(20, 20, 20, 0.9);
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+      text-align: center;
+    }
+
+    .page-content h1 {
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+      color: var(--highlight);
+    }
+    .page-content p { font-size: 1.1rem; margin-bottom: 30px; color: #ddd; }
+
+    .form-box {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      text-align: left;
+    }
+    .form-box label {
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #f0f0f0;
+      font-size: 0.95rem;
+    }
+    .form-box input,
+    .form-box select,
+    .form-box textarea {
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 1px solid #333;
+      background: #111;
+      color: #fff;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+    .form-box input::placeholder,
+    .form-box textarea::placeholder { color: #aaa; }
+    .form-box input:focus,
+    .form-box select:focus,
+    .form-box textarea:focus {
+      border-color: var(--highlight);
+      background: #1a1a1a;
+      outline: none;
+      box-shadow: 0 0 10px rgba(255, 193, 7, 0.4);
+    }
+    .form-box textarea { min-height: 120px; resize: vertical; }
+
+    /* =========================
+       COMMITTEES (committees.html)
+    ========================= */
+    .committee-cards {
+      position: absolute;
+      top: 1%;
+      left: 50%;
+      transform: translate(-50%, 50px);
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      opacity: 0;
+      transition: opacity 1s ease, transform 1s ease;
+      z-index: 2;
+    }
+
+    .committee-item { display: flex; flex-direction: column; align-items: center; }
+
+    .committee-card {
+      width: 300px;
+      height: 350px;
+      border-radius: 15px;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: block;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: rgba(11,12,16,0.6);
+    }
+    .committee-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+    }
+    .committee-name {
+      margin-top: 12px;
+      font-size: 1.2rem;
+      color: #E0E0E0;
+      text-align: center;
+      font-weight: 1000;
+    }
+    /* Desktop / default layout: flexible row wrap (your current setup works fine) */
+    .committee-cards {
+      top: 1%;
+      left: 50%;
+      transform: translate(-50%, 50px);
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      opacity: 0;
+      transition: opacity 1s ease, transform 1s ease;
+      z-index: 2;
+    }
+
+    /* Tablet & smaller: single centered column */
+    @media (max-width: 1024px) {
+      .committee-cards {
+        transform: none;
+        display: flex;
+        flex-direction: column; /* stack items vertically */
+        align-items: center;    /* center them horizontally */
+        gap: 40px;
+        margin: 50px auto 0;    /* push down a little */
+      }
+
+      .committee-card {
+        width: 90%;       /* make them responsive to screen width */
+        max-width: 400px; /* cap so they don’t stretch too wide */
+      }
+
+      .committee-name {
+        text-align: center;
+      }
+    }
+
+    /* Card backgrounds by id */
+    #cabinet   { background-image: url('images/C1.png'); }
+    #ipc       { background-image: url('images/IPC.jpg'); }
+    #disec     { background-image: url('images/D.png'); }
+    #loksabha  { background-image: url('images/Loksabha.jpg'); }
+
+
+    .card--border-glow::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        padding: 8px;
+        background: radial-gradient(
+            var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+                rgba(255, 215, 0, calc(var(--glow-intensity) * 0.5)) 0%,
+                rgba(255, 215, 0, calc(var(--glow-intensity) * 0.25)) 30%,
+            transparent 60%
+        );
+        border-radius: inherit;
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: subtract;
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        filter: blur(10px);
+        z-index: 1;
+    }
+    .card--border-glow:hover::after {
+        opacity:1;
+    }
+
+    /* =========================
+       COMMITTEE TYPOGRAPHY
+    ========================= */
+    .committee-font {
+      font-family: 'Poppins', sans-serif;
+      font-size: 20px;
+      line-height: 1.6;
+      text-align: left;
+    }
+    .committee-font .subheading {
+      font-weight: 600;
+      margin-right: 8px;
+      color: var(--highlight);
+      font-size: 18px;
+    }
+    .committee-font .content {
+      font-weight: 400;
+      color: #ffffff;
+      font-size: 20px;
+    }
+    /* =========================
+       SECRETARIAT (secretariat.html)
+    ========================= */
+    .secretariat {
+      padding: 80px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .secretariat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .secretariat-card {
+      background: linear-gradient(135deg,
+                  rgba(255, 255, 255, 0.05) 0%,
+                  rgba(255, 255, 255, 0.08) 50%,
+                  rgba(255, 255, 255, 0.1) 100%);
+      backdrop-filter: blur(20px);
+      border-radius: 25px;
+      padding: 30px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
+                  inset 1px 0 rgba(255, 255, 255, 0.2),
+                  0 1px rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      color: #fff;
+    }
+
+    .secretariat-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    }
+
+    .secretariat-card .icon {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .secretariat-card h3 {
+      margin: 10px 0;
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    .secretariat-card p {
+      font-size: 0.95rem;
+      opacity: 0.8;
+      margin-bottom: 20px;
+    }
+
+    .secretariat-card .stat {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.1);
+      font-size: 0.85rem;
+    }
+
+    /* =========================
+       CONTACT
+    ========================= */
+    .contact-page { text-align: center; padding: 50px 20px; }
+
+    .contact-box {
+      display: inline-block;
+      background: rgba(17, 17, 17, 0.7);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      padding: 25px 40px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      text-align: left;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      width: 100%;
+      max-width: 550px;
+    }
+    .contact-box p { margin: 15px 0; font-size: 1.1rem; }
+    .contact-box i { margin-right: 8px; color: var(--highlight); }
+
+    .social-icons { margin-top: 20px; }
+    .social-icons a {
+      display: inline-block;
+      margin: 0 15px;
+      font-size: 2rem;
+      color: #fff;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .social-icons a:hover { color: var(--highlight); transform: translateY(-2px); }
+
+    /* =========================
+       FOOTER
+    ========================= */
+    .footer, footer {
+      background: #111;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    /* =========================
+       ANIMATIONS
+    ========================= */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.2s ease forwards;
+      animation-delay: 0.4s;
+    }
+
+    /* =========================
+       RESPONSIVE (TABLET)
+    ========================= */
+    @media (max-width: 1024px) {
+      .hero-title { font-size: 90px; }
+    }
+
+    /* =========================
+       RESPONSIVE (MOBILE BASE)
+    ========================= */
+    @media (max-width: 768px) {
+      /* Navbar sizing */
+      .navbar { padding: 12px 16px; }
+
+      /* Show hamburger, convert nav to slide-in panel */
+      .hamburger { display: block; }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        max-width: 300px;
+        background: rgba(0, 0, 0, 0.85);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
         flex-direction: column;
-        align-items: flex-start;
-    }
-    .social {
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+        padding: 20px 24px;
+        transition: right 0.4s ease-in-out;
+        z-index: 9999;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .nav-links.active { right: 0; }
+
+      /* Link stagger animation */
+      .nav-links li {
+        opacity: 0;
+        transform: translateX(30px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+      .nav-links.active li {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .nav-links li:nth-child(1) { transition-delay: 0.1s; }
+      .nav-links li:nth-child(2) { transition-delay: 0.2s; }
+      .nav-links li:nth-child(3) { transition-delay: 0.3s; }
+      .nav-links li:nth-child(4) { transition-delay: 0.4s; }
+      .nav-links li:nth-child(5) { transition-delay: 0.5s; }
+      .nav-links li:nth-child(6) { transition-delay: 0.6s; }
+
+      /* Hero scale */
+      .hero-title { font-size: 64px; letter-spacing: 3px; }
+      .hero-title-wrap { margin-bottom: 120px; transform: translateY(24px); }
+      .hero-subtitle { font-size: 22px; }
+
+      #hero-title { font-size: 32px; }
+      #hero-slogan { font-size: 22px; }
+
+      /* Button stack on mobile */
+      .button-container {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+      }
+      .btn { width: min(320px, 90vw); }
+
+      /* Content spacing */
+      .page-content { margin: 30px 16px; padding: 28px; }
+      .about { padding: 60px 16px; }
+      .about-card { padding: 28px; }
+
+      /* Committees: prevent overflow from absolute layout */
+      .committee-cards {
+        position: static;
+        top: auto; left: auto;
+        transform: none;
+        opacity: 1;              /* ensure visible without JS timing */
+        padding: 10px 0;
         margin-top: 10px;
+      }
+      .committee-card { width: 260px; height: 300px; }
     }
-}
 
+    /* =========================
+       RESPONSIVE (SMALL MOBILE)
+    ========================= */
+    @media (max-width: 480px) {
+      .hero-title { font-size: 48px; }
+      .hero-subtitle { font-size: 20px; }
 
+      .committee-card { width: 220px; height: 260px; }
 
+      /* Tighter page width */
+      .page-content, .about-card {
+        width: 92%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .card--border-glow {
+        position: relative;
+        --glow-radius: 500px;
+        --glow-intensity: 1;
+        --glow-x: 50%;
+        --glow-y: 50%;
+    }
+
+    /* Contact Page Styles */
+    .page-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;  /* Vertical center */
+        align-items: center;      /* Horizontal center */
+        min-height: 40vh;        /* Full viewport height */
+        text-align: center;
+        color: #fff;
+        padding: 20px;
+    }
+    .page-content h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+
+    .page-content p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: #ccc;
+    }
+
+    .contact-box {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .card {
+        background: #1b1b1b;
+        width: 90%;
+        border-radius: 12px;
+        padding: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+    }
+
+    .main {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .info {
+        text-align: left;
+        font-size: 1rem;
+    }
+
+    .social {
+        display: flex;
+        gap: 15px;
+        font-size: 1.5rem;
+    }
+
+    .social a {
+        color: #aaa;
+        transition: color 0.3s ease;
+    }
+
+    .social a.instagram:hover {
+        color: #e1306c;
+    }
+
+    .social a.telegram:hover {
+        color: #29b6f6;
+    }
+
+    .social a.reddit:hover {
+        color: #ff4500;
+    }
+
+    .social a.youtube:hover {
+        color: #ff0000;
+    }
+
+    /* From Your Shared CSS (Adapted for first 2 cards) */
+    .card:nth-child(1) .telegram {
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .card:nth-child(2) .reddit {
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .card:hover .telegram,
+    .card:hover .reddit {
+        opacity: 1;
+    }
+
+    .main:hover {
+        cursor: pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .main {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .social {
+            margin-top: 10px;
+        }
+    }
