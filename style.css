@@ -55,10 +55,10 @@ body::before {
   position: fixed;
   inset: 0;
   /* use CSS vars for position so we can adjust per breakpoint */
-  background: url("images/BG1.png") no-repeat var(--bg-pos-x) var(--bg-pos-y) fixed;
+  background: url("BG1.png") no-repeat var(--bg-pos-x) var(--bg-pos-y) fixed;
   background-size: cover;
-  opacity: 0.6;
-  filter: blur(3px);
+  opacity: 1;
+  filter: blur(0px);
   background-repeat: no-repeat;
   z-index: -2;
   will-change: background-position;
@@ -118,7 +118,7 @@ body::after {
    NAVBAR (DESKTOP BASE)
 ========================= */
 .navbar {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Cinzel', sans-serif;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -369,111 +369,236 @@ button, .btn {
 }
 .form-box textarea { min-height: 120px; resize: vertical; }
 
+.hero-content {
+    z-index: 2;
+    transition: opacity 1s ease;
+}
+
 /* =========================
    COMMITTEES (committees.html)
 ========================= */
-/* Make committee cards part of the document flow instead of absolute overlaying the viewport.
-   This preserves your animations (opacity/transform) but allows the page height to include them.
-*/
+/* Initially hide the committee cards and prevent them from being interactive */
 .committee-cards {
-  position: relative;
-  margin: 20px auto 0;
+  position: absolute;
+  inset: 0;
   display: flex;
   justify-content: center;
-  gap: 30px;
+  align-items: center;
   flex-wrap: wrap;
+  gap: 30px;
+  padding: 20px 0;
+  z-index: 1; /* behind hero-content (z-index:2) */
+  pointer-events: none;
   opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 1s ease, transform 1s ease;
-  z-index: 2;
+  transform: translateY(10px) scale(0.99);
+  transition: opacity 480ms ease, transform 480ms ease;
 }
 
-.committee-item { display: flex; flex-direction: column; align-items: center; }
+/* This class is added by JavaScript to make the cards visible and interactive */
+.committee-cards.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
 
+/* Base card container styling (no changes here, just for context) */
 .committee-card {
+  position: relative;
   width: 300px;
   height: 350px;
-  border-radius: 15px;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: block;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  text-decoration: none;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-color: rgba(11,12,16,0.6);
+  will-change: transform;
+}
+
+/* Inner content block (no changes here, just for context) */
+.committee-card .card-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    background: linear-gradient(180deg, rgba(16, 16, 16, 0.9), rgba(10, 10, 10, 0.95));
+    border-radius: 12px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+    padding: 12px;
+    gap: 10px;
+    box-sizing: border-box;
+}
+
+/* Image container */
+.committee-card .photo {
+    width: 100%;
+    height: 62%;
+    border-radius: 10px;
+    background-position: center;
+    background-size: cover;
+    box-shadow: inset 0 6px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+/* Add this to dynamically set the background image from the HTML data attribute */
+.committee-card .photo {
+    background-image: var(--_image-url);
+}
+
+/* Optional: a tiny performance friendly hint for some mobile browsers */
+@media (pointer: coarse) and (max-width: 768px) {
+  body::before { background-attachment: scroll; }
+}
+
+/* Reduce iOS scroll-jank on mobile */
+@media (max-width: 768px) {
+  body::before { background-attachment: scroll; }
+}
+
+
+.committee-cards {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 20px 0;
+  margin-top: 10px;
+  z-index: 2;
+  opacity: 1;
+}
+
+/* Base card container */
+.committee-card {
+  position: relative;
+  width: 300px;
+  height: 350px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
 }
 .committee-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.7);
-}
-.committee-name {
-  margin-top: 12px;
-  font-size: 1.2rem;
-  color: #E0E0E0;
-  text-align: center;
-  font-weight: 1000;
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.55), 0 10px 30px rgba(255, 193, 7, 0.035);
 }
 
-/* Tablet & smaller: single centered column */
-@media (max-width: 1024px) {
-  .committee-cards {
-    transform: none;
-    display: flex;
-    flex-direction: column; /* stack items vertically */
-    align-items: center;    /* center them horizontally */
-    gap: 40px;
-    margin: 50px auto 0;    /* push down a little */
-    opacity: 1; /* mobile wants visible without JS timing */
-  }
-
-  .committee-card {
-    width: 90%;       /* make them responsive to screen width */
-    max-width: 400px; /* cap so they don’t stretch too wide */
-  }
-
-  .committee-name {
-    text-align: center;
-  }
-}
-
-/* Card backgrounds by id */
-#cabinet   { background-image: url('images/C1.png'); }
-#ipc       { background-image: url('images/IPC.jpg'); }
-#disec     { background-image: url('images/D.png'); }
-#loksabha  { background-image: url('images/Loksabha.jpg'); }
-
-
-.card--border-glow::after {
-    content: '';
+/* Faint glow effect on hover */
+.committee-card::after {
+    content: "";
     position: absolute;
-    inset: 0;
-    padding: 8px;
-    background: radial-gradient(
-        var(--glow-radius) circle at var(--glow-x) var(--glow-y),
-            rgba(255, 215, 0, calc(var(--glow-intensity) * 0.5)) 0%,
-            rgba(255, 215, 0, calc(var(--glow-intensity) * 0.25)) 30%,
-        transparent 60%
-    );
-    border-radius: inherit;
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: subtract;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    pointer-events: none;
+    inset: -12px;
+    border-radius: 14px;
+    background: radial-gradient(circle at 50% 20%,
+                rgba(255, 193, 7, 0.1),
+                rgba(255, 193, 7, 0.04) 40%,
+                transparent 60%);
+    filter: blur(0.2px) saturate(1.05);
     opacity: 0;
-    transition: opacity 0.3s ease;
-    filter: blur(10px);
-    z-index: 1;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
 }
-.card--border-glow:hover::after {
-    opacity:1;
+.committee-card:hover::after {
+    opacity: 1;
 }
+
+/* Inner content block */
+.committee-card .card-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    background: linear-gradient(180deg, rgba(16, 16, 16, 0.9), rgba(10, 10, 10, 0.95));
+    border-radius: 12px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+    padding: 12px;
+    gap: 10px;
+    box-sizing: border-box;
+}
+
+/* Image container */
+.committee-card .photo {
+    width: 100%;
+    height: 62%;
+    border-radius: 10px;
+    background-position: fill;
+    background-size: cover;
+    box-shadow: inset 0 6px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+/* Text info block */
+.committee-card .info {
+    text-align: center;
+    padding: 8px 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 2;
+    color: #fff;
+}
+.committee-card .info .role {
+    text-align: center;
+    font-weight: 800    ;
+    font-size: 28px;
+    letter-spacing: 0.4px;
+    font-family: 'Cormorant Garamond', serif;
+    color: #B22222;
+    -webkit-text-stroke: 0.05px #ffd700;
+}
+.committee-card .info .position {
+    text-align: center;
+    font-size: 14px;
+    color: #cfcfcf;
+    opacity: 0.95;
+}
+.committee-card .info .mini {
+    text-align: center;
+    margin-top: 6px;
+    background: rgba(0,0,0,0.45);
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+    font-size: 13px;
+    color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 980px) {
+  .committee-card { width: 220px; height: 300px; }
+  .committee-cards { gap: 18px; }
+}
+
+@media (max-width: 520px) {
+  .committee-card {
+    width: min(86vw, 360px);
+    height: auto;
+    aspect-ratio: 3/4;
+  }
+  .committee-card .photo { height: 56%; }
+  .committee-card .info .role { font-size: 18px; }
+}
+
 
 /* =========================
    COMMITTEE TYPOGRAPHY
 ========================= */
 .committee-font {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Cinzel', serif;
   font-size: 20px;
   line-height: 1.6;
   text-align: left;
@@ -494,11 +619,14 @@ button, .btn {
    SECRETARIAT (secretariat.html)
 ========================= */
 .secretariat {
-  padding: 80px 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    min-height: calc(100vh - 70px - 50px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
 }
+
 
 .secretariat-grid {
   display: grid;
@@ -541,6 +669,7 @@ button, .btn {
   margin: 10px 0;
   font-size: 1.4rem;
   font-weight: bold;
+  font-family: 'Cinzel', serif;
 }
 
 .secretariat-card p {
@@ -956,4 +1085,51 @@ button, .btn {
   transform-origin: center center;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+}
+/* Hero section should center its content */
+.hero {
+  position: relative;
+  min-height: 100vh; /* full viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#hero-title .highlight {
+  color: var(--highlight);
+}
+
+/* Hero content centered */
+.hero-content {
+  z-index: 2;
+  color: #fff;
+  transition: opacity 1s ease;
+}
+
+/* Committee cards (hidden initially) */
+.committee-cards {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 20px 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(10px) scale(0.99);
+  transition: opacity 480ms ease, transform 480ms ease;
+}
+
+/* When shown, they move into normal flow */
+.committee-cards.show {
+  position: relative;
+  margin-top: 40px; /* ensures they sit below hero after fade */
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  z-index: 2;
 }
