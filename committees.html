@@ -9,17 +9,12 @@
 </head>
 <body>
 
-<!-- Navbar -->
-
 <nav class="navbar">
     <div class="logo"><a href="index.html"><span class="highlight">S</span>MUN</a></div>
 
-    <!-- Hamburger Icon -->
     <div class="hamburger" id="hamburger">
-        &#9776; <!-- Unicode hamburger menu -->
-    </div>
+        &#9776; </div>
 
-    <!-- Nav Links -->
     <ul class="nav-links" id="nav-links">
         <li><a href="index.html">HOME</a></li>
         <li><a href="register.html">REGISTER</a></li>
@@ -30,68 +25,61 @@
     </ul>
 </nav>
 
-<!-- Hero Section -->
 <section class="hero">
     <div class="hero-overlay"></div>
-    <div class="hero-content fade-out-text">
-        <h1 id="hero-title">Our <span class="highlight">Committees</span></h1>
-        <p id="hero-slogan">Where ideas, diplomacy, and strategy converge.</p>
+    <div class="hero-content" id="hero-content">
+        <h1 id="hero-title" class="text-glow">Our <span class="highlight">Committees</span></h1>
+        <p id="hero-slogan">
+            Where Minds Meet and Diplomacy Prevails
+        </p>
     </div>
 
-    <!-- Committee Cards -->
-    <div class="committee-cards">
-        <div class="committee-item">
-            <a href="cabinet.html" class="committee-card card--border-glow" id="cabinet"></a>
-            <h3 class="committee-name">Churchill's War Cabinet</h3>
-        </div>
+    <div class="committee-cards" id="committeeCards" aria-hidden="true">
+        <a href="cabinet.html" class="committee-card" id="cabinet" data-image="url('C1.png')">
+            <div class="card-inner">
+                <div class="photo"></div>
+                <div class="info">
+                    <h3 class="role">Churchill's War Cabinet</h3>
+                    <span class="position">Egos vs Crisis</span>
+                    <div class="mini"></div>
+                </div>
+            </div>
+        </a>
 
-        <div class="committee-item">
-            <a href="ipc.html" class="committee-card card--border-glow" id="ipc"></a>
-            <h3 class="committee-name">International Press Corps</h3>
-        </div>
+        <a href="ipc.html" class="committee-card" id="ipc" data-image="url('IPC.jpg')">
+            <div class="card-inner">
+                <div class="photo"></div>
+                <div class="info">
+                    <h3 class="role">International Press Conference</h3>
+                    <span class="position">The Truth? Maybe.</span>
+                </div>
+            </div>
+        </a>
 
-        <div class="committee-item">
-            <a href="unga.html" class="committee-card card--border-glow" id="disec"></a>
-            <h3 class="committee-name">UNGA – DISEC</h3>
-        </div>
+        <a href="unga.html" class="committee-card" id="unga" data-image="url('D.png')">
+            <div class="card-inner">
+                <div class="photo"></div>
+                <div class="info">
+                    <h3 class="role">UNGA - DISEC</h3>
+                    <span class="position">Disarmament, Except Ours.</span>
+                </div>
+            </div>
+        </a>
 
-        <div class="committee-item">
-            <a href="loksabha.html" class="committee-card card--border-glow" id="loksabha"></a>
-            <h3 class="committee-name">Lok Sabha</h3>
-        </div>
+        <a href="loksabha.html" class="committee-card" id="loksabha" data-image="url('Loksabha.jpg')">
+            <div class="card-inner">
+                <div class="photo"></div>
+                <div class="info">
+                    <h3 class="role">Lok Sabha</h3>
+                    <span class="position">Debate (trans. Decibels)</span>
+                </div>
+            </div>
+        </a>
     </div>
-
-
 </section>
 
-<!-- Footer -->
 <footer class="footer">
     <p>&copy; 2025 SMUN | All Rights Reserved</p>
 </footer>
-
-    <script>
-        // Fade out hero text and reveal cards
-        window.addEventListener("DOMContentLoaded", () => {
-            const heroContent = document.querySelector(".fade-out-text");
-            const cards = document.querySelector(".committee-cards");
-
-            setTimeout(() => {
-                heroContent.style.opacity = 0;
-                cards.style.opacity = 1;
-                cards.style.transform = "translate(-50%, 0)"; // center alignment
-            }, 1500);
-        });
-        document.querySelectorAll('.card--border-glow').forEach(card => {
-        card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-
-        card.style.setProperty('--glow-x', `${x}%`);
-        card.style.setProperty('--glow-y', `${y}%`);
-            });
-        });
-    </script>
-
 </body>
 </html>
