@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Metadata and viewport for responsive design -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SMUN - Registration</title>
+  <!-- External stylesheet and JS for page styling and interactivity -->
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <!-- Google tag for analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCB5QTGWRH"></script>
+  <script>
+    // Google Analytics tracking setup
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VCB5QTGWRH');
+  </script>
+  <style>
+    /* Main background and global font */
+    body {
+      font-family: 'Work Sans', sans-serif; /* Modern font */
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 20px;
+    }
+    .page-content {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 30px;
+      background: rgba(20, 20, 20, 0.9);
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+    }
+    h1 {
+      color: var(--highlight);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    /* Glow box styling for form sections */
+    .hover-box {
+      background: linear-gradient(145deg, #161616, #0f0f0f);
+      border: 1px solid rgba(212,175,55,0.2);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 15px 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .hover-box:hover {
+      transform: translateY(-6px);
+      border-color: rgba(212,175,55,1); /* Gold glow on hover */
+      box-shadow: 0 10px 24px rgba(212,175,55,0.35), 0 0 15px rgba(212,175,55,0.7);
+    }
+    /* Special glowing registration details box at end */
+    .registration-details-box {
+      background: linear-gradient(145deg, #161616, #0f0f0f);
+      border: 1px solid rgba(212,175,55,0.6);
+      box-shadow: 0 8px 20px rgba(212,175,55,0.4);
+      border-radius: 16px;
+      padding: 25px;
+      margin: 30px auto 0 auto;
+      max-width: 420px;
+      color: #f0e6a2;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .registration-details-box:hover {
+      border-color: rgba(212,175,55,1);
+      box-shadow: 0 12px 30px rgba(212,175,55,0.6), 0 0 20px rgba(212,175,55,0.9);
+      transform: translateY(-8px);
+    }
+    .registration-details-box h2 {
+      color: #d4af37; /* Gold */
+      margin-bottom: 15px;
+      font-weight: 700;
+      font-size: 1.8rem;
+    }
+    .registration-details-box p {
+      margin: 8px 0;
+      font-weight: 600;
+    }
+    .register-now-btn {
+      background: transparent;
+      color: #d4af37;
+      border: 2px solid #d4af37;
+      padding: 12px 30px;
+      cursor: pointer;
+      border-radius: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.5s ease;
+      margin-bottom: 20px;
+    }
+    .register-now-btn:hover {
+      background: #d4af37;
+      color: #111;
+      box-shadow: 0 6px 22px rgba(212,175,55,0.8);
+      transform: scale(1.1);
+    }
+    /* Section titles inside form */
+    .hover-box h3 {
+      color: #d4af37;
+      margin-bottom: 12px;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-align: left;
+    }
+    /* Form labels and fields */
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: var(--highlight);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: left;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px 14px;
+      margin-bottom: 1rem;
+      border-radius: 6px;
+      background: #1a1a1a;
+      border: 1px solid var(--highlight);
+      color: #f0e6a2;
+      font-size: 1rem;
+      resize: vertical;
+    }
+    textarea {
+      min-height: 100px;
+    }
+    /* Checkbox group */
+    .checkbox-group {
+      margin-bottom: 1rem;
+    }
+    .checkbox-group label {
+      display: inline-block;
+      margin-right: 25px;
+      font-weight: 400;
+      text-transform: none;
+      color: var(--text);
+    }
+    /* General button styles */
+    button {
+      background: transparent;
+      color: var(--highlight);
+      border: 2px solid var(--highlight);
+      padding: 12px 28px;
+      cursor: pointer;
+      border-radius: 6px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.5s ease;
+    }
+    button:hover {
+      background: var(--highlight);
+      color: #111;
+      box-shadow: 0 4px 20px rgba(212,175,55,0.6);
+      transform: scale(1.05);
+    }
+    /* File input field styling */
+    .file-input {
+      margin-bottom: 1rem;
+    }
+    /* QR code image styling */
+    .qr-code {
+      display: block;
+      margin: 1.5rem auto;
+      max-width: 180px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(212,175,55,0.5);
+    }
+    /* Responsive styles for mobile */
+    @media (max-width: 767px) {
+      .page-content {
+        margin: 15px;
+        padding: 20px;
+      }
+      label {
+        text-align: left;
+      }
+    }
+    /* Flashy success message style */
+    #registerSuccess {
+      display: none;
+      margin: 30px auto 10px auto;
+      padding: 24px 20px;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #111;
+      background: linear-gradient(90deg,#dfad51 60%,#d8e680 100%);
+      border-radius: 14px;
+      box-shadow: 0 0 44px 12px #dfad51;
+      text-align: center;
+      letter-spacing: 2px;
+      animation: popUp 1.3s cubic-bezier(0.33,1.19,0.44,1.01) forwards;
+    }
+    @keyframes popUp {
+      from { opacity: 0; transform: scale(0.7);}
+      to { opacity: 1; transform: scale(1);}
+    }
+  </style>
+</head>
+<body>
+<!-- Navbar at top -->
+<nav class="navbar">
+  <div class="logo"><a href="index.html"><span class="highlight">S</span>MUN</a></div>
+  <div class="hamburger" id="hamburger">☰</div>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">HOME</a></li>
+    <li><a href="register.html" class="active">REGISTER</a></li>
+    <li><a href="secretariat.html">SECRETARIAT</a></li>
+    <li><a href="committees.html">COMMITTEES</a></li>
+    <li><a href="resources.html">RESOURCES</a></li>
+    <li><a href="contact.html">CONTACT US</a></li>
+  </ul>
+</nav>
+
+<!-- Main registration page content -->
+<div class="page-content">
+  <h1>Registration for SMUN 2025</h1>
+
+  <!-- Registration form starts -->
+  <form id="registerForm">
+    <!-- Basic Information Section -->
+    <div class="hover-box">
+      <h3>Basic Information</h3>
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" required />
+
+      <label for="experience">MUN Experience</label>
+      <textarea id="experience" name="experience" placeholder="Describe your MUN experience" rows="3"></textarea>
+
+      <label for="institution">Institution Name</label>
+      <input type="text" id="institution" name="institution" required />
+    </div>
+
+    <!-- Meal Preference Selection -->
+    <div class="hover-box">
+      <h3>Meal Preference</h3>
+      <select name="mealPreference" id="mealPreference" required>
+        <option value="">Select</option>
+        <option value="veg">Vegetarian</option>
+        <option value="nonveg">Non-Vegetarian</option>
+      </select>
+    </div>
+
+    <!-- Committee Preferences -->
+    <div class="hover-box">
+      <h3>Committee Preference 1</h3>
+      <label for="committeePreference1">Committee</label>
+      <input type="text" id="committeePreference1" name="committeePreference1" />
+
+      <label for="alloPreference1">Allo Preference (Give 3, separated by commas)</label>
+      <input type="text" id="alloPreference1" name="alloPreference1" />
+    </div>
+    <div class="hover-box">
+      <h3>Committee Preference 2</h3>
+      <label for="committeePreference2">Committee</label>
+      <input type="text" id="committeePreference2" name="committeePreference2" />
+
+      <label for="alloPreference2">Allo Preference (Give 3, separated by commas)</label>
+      <input type="text" id="alloPreference2" name="alloPreference2" />
+
+      <p>If either of your preferences is IPC, kindly check the appropriate box:</p>
+      <div class="checkbox-group">
+        <input type="checkbox" id="photography" name="ipcCheckboxes" value="Photography" />
+        <label for="photography">Photography</label>
+        <input type="checkbox" id="journalism" name="ipcCheckboxes" value="Journalism" />
+        <label for="journalism">Journalism</label>
+      </div>
+    </div>
+
+    <!-- Awards Section -->
+    <div class="hover-box">
+      <h3>Awards in MUN</h3>
+      <textarea id="awards" name="awards" placeholder="List your awards" rows="3"></textarea>
+    </div>
+
+    <!-- Double Delegation Details -->
+    <div class="hover-box">
+      <h3>If UNGA DISEC (DOUBLE DELEGATION), fill the delegate details:</h3>
+      <label for="doubleName">Name</label>
+      <input type="text" id="doubleName" name="doubleName" />
+
+      <label for="doublePhone">Phone Number</label>
+      <input type="tel" id="doublePhone" name="doublePhone" />
+
+      <label for="doubleEmail">Email Id</label>
+      <input type="email" id="doubleEmail" name="doubleEmail" />
+
+      <label for="doubleMealPreference">Meal Preference</label>
+      <select name="doubleMealPreference" id="doubleMealPreference">
+        <option value="">Select</option>
+        <option value="veg">Vegetarian</option>
+        <option value="nonveg">Non-Vegetarian</option>
+      </select>
+
+      <label for="doubleExperience">MUN Experience</label>
+      <textarea id="doubleExperience" name="doubleExperience" rows="3"></textarea>
+
+      <label for="doubleAwards">Awards</label>
+      <textarea id="doubleAwards" name="doubleAwards" rows="3"></textarea>
+
+      <label for="doubleInstitution">Institution Name</label>
+      <input type="text" id="doubleInstitution" name="doubleInstitution" />
+    </div>
+
+    <!-- Payment Section -->
+    <div class="hover-box">
+      <h3>Payment Information</h3>
+      <!-- QR Code for payment -->
+      <img src="qr code.png" alt="Payment QR Code" class="qr-code" />
+
+      <label for="transactionScreenshot">Attach Screenshot Of The Payment</label>
+      <input type="file" id="transactionScreenshot" name="transactionScreenshot" accept="image/*" class="file-input" />
+
+      <label for="transactionId">Enter the Transaction Id</label>
+      <input type="text" id="transactionId" name="transactionId" />
+
+      <label for="referenceCode">Kindly insert Reference code if any (For Delegation)</label>
+      <input type="text" id="referenceCode" name="referenceCode" />
+    </div>
+
+   <div id="registerSuccess" style="display:block; background:#d4edda; padding:12px; border-radius:5px; margin:10px 0;">
+  ✔️ Successful Registration! Welcome to SMUN 2025!
+</div>
+
+<script>
+  setTimeout(function() {
+    document.getElementById('registerSuccess').style.display = 'none';
+  }, 5000); // Adjust time (ms) as needed
+</script>
+
+
+  <!-- Glowing registration info at page end -->
+  <div class="registration-details-box hover-glow">
+    <button class="register-now-btn">REGISTER NOW</button>
+    <div class="registration-details-content">
+      <h2>Registration Details</h2>
+      <p><strong>Registration Fee:</strong> ₹1300</p>
+      <p><strong>Deadline:</strong> 15th October 2025</p>
+      <p><strong>Venue:</strong> Indian Council for Cultural Relations, Kolkata (ICCR)</p>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript for form handling and success flash -->
+<script>
+  // Handles registration form submit to prevent multiple registrations per IP
+  document.getElementById('registerForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevents normal form action
+    // IMPORTANT: Restricting by IP must happen at the server/backend!
+    // Here, we only simulate the "one registration per IP" effect.
+    if(localStorage.getItem('hasRegistered')) {
+      // If browser localStorage indicates prior registration, show error
+      document.getElementById('registerSuccess').style.display = "block";
+      document.getElementById('registerSuccess').innerText = "⚠️ Only one registration allowed from this device/IP!";
+      document.getElementById('registerSuccess').style.background = "linear-gradient(90deg,#f47373 60%,#f9ba57 100%)";
+      document.getElementById('registerSuccess').style.color = "#811";
+    } else {
+      // Show flashy success message
+      document.getElementById('registerSuccess').style.display = "block";
+      document.getElementById('registerSuccess').innerText = "✔️ Successful Registration! Welcome to SMUN 2025!";
+      document.getElementById('registerSuccess').style.background = "linear-gradient(90deg,#dfad51 60%,#d8e680 100%)";
+      document.getElementById('registerSuccess').style.color = "#111";
+      localStorage.setItem('hasRegistered', 'true'); // Record in browser (for simulation)
+    }
+  });
+
+  // NOTE: A real "one registration per IP" policy requires backend checks using request IP, not JavaScript alone.
+</script>
+</body>
+</html>
