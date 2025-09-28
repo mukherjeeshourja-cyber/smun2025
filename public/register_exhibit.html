@@ -12,7 +12,6 @@
       color: #fff;
       line-height: 1.6;
     }
-
     .container {
       max-width: 720px;
       margin: 32px auto 24px auto;
@@ -21,27 +20,23 @@
       border-radius: 10px;
       box-shadow: 0 4px 24px rgba(0,0,0,0.6);
     }
-
     h1 {
       margin-top: 0;
       font-size: 2.5em;
       text-align: left;
       margin-bottom: 4px;
     }
-
     .subtitle {
       font-size: 1.1em;
       color: #fbc531;
       margin-bottom: 20px;
       margin-left: 2px;
     }
-
     h2 {
       margin-top: 18px;
       color: #f7c873;
       font-size: 1.25em;
     }
-
     .perks {
       margin-top: 0;
       margin-bottom: 20px;
@@ -50,12 +45,10 @@
     .perks li {
       margin-bottom: 5px;
     }
-
     .highlight {
       color: #ddab44;
       font-weight: bold;
     }
-
     .price-table {
       width: 97%;
       margin: 15px 0 18px 0;
@@ -79,20 +72,17 @@
     .price-table tr:nth-child(even) {
       background: rgba(45,45,55, 0.4);
     }
-
     form {
       margin-top: 28px;
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
-
     label {
       margin-bottom: 2px;
       font-weight: 600;
       letter-spacing: 0.01em;
     }
-
     input[type="text"],
     input[type="email"],
     input[type="url"],
@@ -105,7 +95,6 @@
       border-radius: 5px;
       font-size: 1em;
     }
-
     .radio-group {
       display: flex;
       gap: 28px;
@@ -116,7 +105,6 @@
     .radio-group input[type="radio"] {
       margin-right: 5px;
     }
-
     .checkbox-label {
       display: flex;
       align-items: flex-start;
@@ -124,7 +112,6 @@
       font-size: 0.99em;
       margin-top: 7px;
     }
-
     .submit-btn {
       background: linear-gradient(90deg, #f7c873, #fbb034);
       color: #242424;
@@ -142,14 +129,12 @@
       background: linear-gradient(90deg, #ffe47a, #fbb034);
       color: #1b1b1b;
     }
-
     .footer {
       text-align: center;
       margin-top: 18px;
       font-size: 1em;
       color: #cacaca;
     }
-
     @media (max-width: 600px) {
       .container {
         padding: 14px 7px 10px 7px;
@@ -190,7 +175,7 @@
         <tr><td>Panoramic</td><td>12 X 36, 16 X 48</td><td>₹550/-</td></tr>
       </tbody>
     </table>
-    <form action="http://localhost:5000/submit-exhibit" method="POST" enctype="multipart/form-data">
+    <form id="exhibitForm" enctype="multipart/form-data">
       <label>Painting/ Picture *</label>
       <div class="radio-group">
         <input type="radio" name="art_type" id="painting" value="Painting" required />
@@ -236,14 +221,42 @@
 
       <button type="submit" class="submit-btn">Submit Exhibit Application</button>
     </form>
+
     <p style="margin-top:18px;" class="highlight">
       Special Discount For Delegates: Use code 'DELSMUN' for 10% off if you are an SMUN delegate.<br />
       <span style="color:#ff4040;">*MONEY ONCE PAID IS NOT REFUNDABLE*</span>
     </p>
+
     <div class="footer">
       Regards,<br />
       Team SMUN
     </div>
   </div>
+
+  <script>
+    document.getElementById('exhibitForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const form = e.target;
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch('/submit-exhibit', {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (response.ok) {
+          alert('Exhibit submission successful!');
+          form.reset();
+        } else {
+          alert('Submission failed. Please try again.');
+        }
+      } catch (err) {
+        alert('Error connecting to server.');
+        console.error(err);
+      }
+    });
+  </script>
 </body>
 </html>
