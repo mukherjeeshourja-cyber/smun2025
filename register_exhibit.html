@@ -190,24 +190,24 @@
         <tr><td>Panoramic</td><td>12 X 36, 16 X 48</td><td>₹550/-</td></tr>
       </tbody>
     </table>
-    <form action="http://localhost:5000/register-exhibit" method="POST" enctype="multipart/form-data">
+    <form action="http://localhost:5000/submit-exhibit" method="POST" enctype="multipart/form-data">
       <label>Painting/ Picture *</label>
       <div class="radio-group">
-        <input type="radio" name="art_type" id="painting" value="Painting" required>
+        <input type="radio" name="art_type" id="painting" value="Painting" required />
         <label for="painting">Painting</label>
-        <input type="radio" name="art_type" id="picture" value="Picture" required>
+        <input type="radio" name="art_type" id="picture" value="Picture" required />
         <label for="picture">Picture</label>
       </div>
 
       <label>Choose Dimensions *</label>
       <div class="radio-group">
-        <input type="radio" name="dimensions" id="small" value="Small" required>
+        <input type="radio" name="dimensions" id="small" value="Small" required />
         <label for="small">Small</label>
-        <input type="radio" name="dimensions" id="medium" value="Medium" required>
+        <input type="radio" name="dimensions" id="medium" value="Medium" required />
         <label for="medium">Medium</label>
-        <input type="radio" name="dimensions" id="large" value="Large" required>
+        <input type="radio" name="dimensions" id="large" value="Large" required />
         <label for="large">Large</label>
-        <input type="radio" name="dimensions" id="panoramic" value="Panoramic" required>
+        <input type="radio" name="dimensions" id="panoramic" value="Panoramic" required />
         <label for="panoramic">Panoramic</label>
       </div>
 
@@ -237,10 +237,13 @@
       <button type="submit" class="submit-btn">Submit Exhibit Application</button>
     </form>
     <p style="margin-top:18px;" class="highlight">
-      Special Discount For Delegates: Use code 'DELSMUN' for 10% off if you are an SMUN delegate.<br>
+      Special Discount For Delegates: Use code 'DELSMUN' for 10% off if you are an SMUN delegate.<br />
       <span style="color:#ff4040;">*MONEY ONCE PAID IS NOT REFUNDABLE*</span>
     </p>
-    <div class="footer">Regards,<br />Team SMUN</div>
+    <div class="footer">
+      Regards,<br />
+      Team SMUN
+    </div>
   </div>
 </body>
 </html>
