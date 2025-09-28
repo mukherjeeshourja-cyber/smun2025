@@ -7,9 +7,12 @@ const path = require('path');
 const fs = require('fs');
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
+
+// Serve frontend static files from /public folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Create uploads folder if it doesn't exist
 const uploadDir = path.join(__dirname, 'uploads');
@@ -17,21 +20,20 @@ if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
 }
 
-// Configure multer storage for files
+// Configure multer storage for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, uploadDir),
   filename: (req, file, cb) => cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname)),
 });
 const upload = multer({ storage });
 
-// Parse JSON bodies (for API clients)
+// Parse JSON and urlencoded bodies
 app.use(bodyParser.json());
-// Parse URL-encoded bodies (for HTML form submissions)
 app.use(express.urlencoded({ extended: true }));
 
-// Connect to SQLite database file
+// Connect to SQLite database
 const dbPath = path.join(__dirname, 'registrations.db');
-const db = new sqlite3.Database(dbPath, err => {
+const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
     console.error('Database error:', err.message);
   } else {
@@ -39,7 +41,7 @@ const db = new sqlite3.Database(dbPath, err => {
   }
 });
 
-// Create registrations table if doesn't exist
+// Create registrations table
 db.run(`CREATE TABLE IF NOT EXISTS registrations (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT, email TEXT, phone TEXT, experience TEXT, institution TEXT,
@@ -50,7 +52,7 @@ db.run(`CREATE TABLE IF NOT EXISTS registrations (
   transactionScreenshot TEXT, transactionId TEXT, referenceCode TEXT
 )`);
 
-// Create exhibits table if doesn't exist
+// Create exhibits table
 db.run(`CREATE TABLE IF NOT EXISTS exhibits (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   art_type TEXT,
@@ -64,7 +66,7 @@ db.run(`CREATE TABLE IF NOT EXISTS exhibits (
   artwork TEXT
 )`);
 
-// POST endpoint for delegate registration, with file upload
+// Delegate registration endpoint
 app.post('/register', upload.single('transactionScreenshot'), (req, res) => {
   const data = req.body;
   const file = req.file;
@@ -81,8 +83,8 @@ app.post('/register', upload.single('transactionScreenshot'), (req, res) => {
   const params = [
     data.name, data.email, data.phone, data.experience, data.institution, data.mealPreference,
     data.committeePreference1, data.alloPreference1, data.committeePreference2, data.alloPreference2,
-    data.photography === 'true' || data.photography === true ? 1 : 0,
-    data.journalism === 'true' || data.journalism === true ? 1 : 0,
+    (data.photography === 'true' || data.photography === true) ? 1 : 0,
+    (data.journalism === 'true' || data.journalism === true) ? 1 : 0,
     data.awards, data.doubleName, data.doublePhone, data.doubleEmail, data.doubleMealPreference,
     data.doubleExperience, data.doubleAwards, data.doubleInstitution,
     screenshotPath, data.transactionId, data.referenceCode
@@ -98,7 +100,7 @@ app.post('/register', upload.single('transactionScreenshot'), (req, res) => {
   });
 });
 
-// POST endpoint for exhibit submissions, with file upload
+// Exhibit registration endpoint
 app.post('/submit-exhibit', upload.single('artwork'), (req, res) => {
   const data = req.body;
   const file = req.file;
@@ -116,7 +118,7 @@ app.post('/submit-exhibit', upload.single('artwork'), (req, res) => {
     data.name,
     data.phone,
     data.email,
-    data.declaration === 'on' ? 1 : 0,
+    (data.declaration === 'on') ? 1 : 0,
     filePath
   ];
 
@@ -130,7 +132,7 @@ app.post('/submit-exhibit', upload.single('artwork'), (req, res) => {
   });
 });
 
-// Start the server
+// Start server
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });

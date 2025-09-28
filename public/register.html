@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/seasons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <title>SMUN - Choose Registration Type</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+
+    <style>
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+            color: #f0e6a2;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .page-content {
+            max-width: 900px;
+            margin: 120px auto;
+            padding: 50px;
+            background: rgba(20,20,20,0.9);
+            border-radius: 24px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.7);
+            text-align: center;
+            animation: fadeIn 1.2s ease forwards;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #d4af37;
+            margin-bottom: 60px;
+            text-shadow: 0 2px 10px rgba(212,175,55,0.5);
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .reg-option-btn {
+            flex: 1 1 300px;
+            max-width: 350px;
+            min-height: 180px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #d4af37;
+            background: linear-gradient(145deg, #161616, #0f0f0f);
+            border: 3px solid rgba(212,175,55,0.6);
+            border-radius: 24px;
+            cursor: pointer;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5), 0 0 10px rgba(212,175,55,0.2);
+        }
+
+        .reg-option-btn::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(212,175,55,0.3), transparent 70%);
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.6s ease;
+        }
+
+        .reg-option-btn:hover::before {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .reg-option-btn:hover {
+            background: linear-gradient(145deg, #212121, #1a1a1a);
+            border-color: rgba(212,175,55,1);
+            box-shadow: 0 12px 35px rgba(212,175,55,0.6), 0 0 25px rgba(212,175,55,0.9);
+            transform: translateY(-10px) scale(1.05) rotateX(3deg) rotateY(3deg);
+        }
+
+        .reg-option-btn span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .reg-option-btn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(255,255,255,0.2), rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+            transform: skewX(-20deg);
+            transition: all 0.7s ease;
+        }
+
+        .reg-option-btn:hover::after {
+            left: 125%;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 767px) {
+            .page-content {
+                margin: 60px 15px;
+                padding: 30px;
+            }
+            h1 {
+                font-size: 2.2rem;
+                margin-bottom: 40px;
+            }
+            .reg-option-btn {
+                font-size: 1.4rem;
+                min-height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="particles-js"></div>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo"><a href="index.html"><span class="highlight">S</span>MUN</a></div>
+    <div class="hamburger" id="hamburger">&#9776;</div>
+    <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="register.html" class="active">REGISTER</a></li>
+        <li><a href="secretariat.html">SECRETARIAT</a></li>
+        <li><a href="committees.html">COMMITTEES</a></li>
+        <li><a href="resources.html">RESOURCES</a></li>
+        <li><a href="contact.html">CONTACT US</a></li>
+    </ul>
+</nav>
+
+<!-- Registration Intermediary Section -->
+<div class="page-content">
+    <h1>Choose Your Registration Type</h1>
+    <div class="button-row">
+        <button class="reg-option-btn" onclick="location.href='register_delegate.html'">
+            <span>Delegate</span>
+        </button>
+        <button class="reg-option-btn" onclick="location.href='register_exhibit.html'">
+            <span>Exhibit</span>
+        </button>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>&copy; 2025 SMUN | All Rights Reserved</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 500, "density": { "enable": true, "value_area": 1000 } },
+        "color": { "value": "#dfad51" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.7, "random": true },
+        "size": { "value": 1, "random": true },
+        "line_linked": { "enable": true, "distance": 150, "color": "#dfad51", "opacity": 0.2, "width": 1 },
+        "move": { "enable": true, "speed": 0.5, "random": true }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" } },
+        "modes": { "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 } }
+      },
+      "retina_detect": true
+    });
+</script>
+</body>
+</html>
+
