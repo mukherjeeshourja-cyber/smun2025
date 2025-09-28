@@ -1133,3 +1133,30 @@ button, .btn {
   pointer-events: auto;
   z-index: 2;
 }
+form {
+  max-width: 550px;
+  margin: 0 auto;
+}
+.hover-box {
+  background: #171717;
+  border: 1px solid #d4af37;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px #d4af3755;
+}
+label, input, textarea, select {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.radio-group {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 10px;
+}
+.submit-btn {
+  display: block;
+  margin: 24px auto;
+  padding: 12px 32px;
+}

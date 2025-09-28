@@ -13,27 +13,25 @@ app.use(cors());
 
 // Create uploads folder if it doesn't exist
 const uploadDir = path.join(__dirname, 'uploads');
-if (!fs.existsSync(uploadDir)){
-    fs.mkdirSync(uploadDir);
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
 }
 
-// Configure multer storage
+// Configure multer storage for files
 const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, uploadDir);
-  },
-  filename: function(req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-  }
+  destination: (req, file, cb) => cb(null, uploadDir),
+  filename: (req, file, cb) => cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname)),
 });
-const upload = multer({ storage: storage });
+const upload = multer({ storage });
 
-// Use bodyParser only for JSON (multer handles multipart)
+// Parse JSON bodies (for API clients)
 app.use(bodyParser.json());
+// Parse URL-encoded bodies (for HTML form submissions)
+app.use(express.urlencoded({ extended: true }));
 
-// Connect to SQLite database (file will be created if not exist)
+// Connect to SQLite database file
 const dbPath = path.join(__dirname, 'registrations.db');
-const db = new sqlite3.Database(dbPath, (err) => {
+const db = new sqlite3.Database(dbPath, err => {
   if (err) {
     console.error('Database error:', err.message);
   } else {
@@ -41,7 +39,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
   }
 });
 
-// Create table if not exists
+// Create registrations table if doesn't exist
 db.run(`CREATE TABLE IF NOT EXISTS registrations (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT, email TEXT, phone TEXT, experience TEXT, institution TEXT,
@@ -52,11 +50,24 @@ db.run(`CREATE TABLE IF NOT EXISTS registrations (
   transactionScreenshot TEXT, transactionId TEXT, referenceCode TEXT
 )`);
 
-// POST endpoint to receive form + file upload
+// Create exhibits table if doesn't exist
+db.run(`CREATE TABLE IF NOT EXISTS exhibits (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  art_type TEXT,
+  dimensions TEXT,
+  price_range TEXT,
+  maps_link TEXT,
+  name TEXT,
+  phone TEXT,
+  email TEXT,
+  declaration INTEGER,
+  artwork TEXT
+)`);
+
+// POST endpoint for delegate registration, with file upload
 app.post('/register', upload.single('transactionScreenshot'), (req, res) => {
   const data = req.body;
   const file = req.file;
-
   const screenshotPath = file ? file.path : '';
 
   const sql = `INSERT INTO registrations (
@@ -87,6 +98,39 @@ app.post('/register', upload.single('transactionScreenshot'), (req, res) => {
   });
 });
 
+// POST endpoint for exhibit submissions, with file upload
+app.post('/submit-exhibit', upload.single('artwork'), (req, res) => {
+  const data = req.body;
+  const file = req.file;
+  const filePath = file ? file.path : '';
+
+  const sql = `INSERT INTO exhibits (
+    art_type, dimensions, price_range, maps_link, name, phone, email, declaration, artwork
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+  const params = [
+    data.art_type,
+    data.dimensions,
+    data.price_range,
+    data.maps_link,
+    data.name,
+    data.phone,
+    data.email,
+    data.declaration === 'on' ? 1 : 0,
+    filePath
+  ];
+
+  db.run(sql, params, function(err) {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Failed to save exhibit data');
+    } else {
+      res.status(200).json({ id: this.lastID, message: 'Exhibit submission saved!' });
+    }
+  });
+});
+
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });

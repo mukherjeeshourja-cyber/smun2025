@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Exhibit - SMUN 2025</title>
+  <style>
+    body {
+      background: url('BG1.png') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 32px auto 24px auto;
+      padding: 36px 36px 16px 36px;
+      background: rgba(0, 0, 0, 0.76);
+      border-radius: 10px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.6);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 2.5em;
+      text-align: left;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      font-size: 1.1em;
+      color: #fbc531;
+      margin-bottom: 20px;
+      margin-left: 2px;
+    }
+
+    h2 {
+      margin-top: 18px;
+      color: #f7c873;
+      font-size: 1.25em;
+    }
+
+    .perks {
+      margin-top: 0;
+      margin-bottom: 20px;
+      padding-left: 24px;
+    }
+    .perks li {
+      margin-bottom: 5px;
+    }
+
+    .highlight {
+      color: #ddab44;
+      font-weight: bold;
+    }
+
+    .price-table {
+      width: 97%;
+      margin: 15px 0 18px 0;
+      border-collapse: collapse;
+      background: rgba(255,255,255,0.15);
+      border-radius: 6px;
+      overflow: hidden;
+      font-size: 1em;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .price-table th, .price-table td {
+      border: 1px solid #aaa;
+      padding: 8px 16px;
+      text-align: left;
+    }
+    .price-table th {
+      background: #23272a;
+      font-weight: bold;
+      color: #ffe47a;
+    }
+    .price-table tr:nth-child(even) {
+      background: rgba(45,45,55, 0.4);
+    }
+
+    form {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    label {
+      margin-bottom: 2px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    input[type="tel"],
+    input[type="file"] {
+      width: 100%;
+      padding: 8px 10px;
+      margin-bottom: 7px;
+      border: 1px solid #999;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 28px;
+      margin-bottom: 10px;
+      align-items: center;
+      font-weight: 400;
+    }
+    .radio-group input[type="radio"] {
+      margin-right: 5px;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.99em;
+      margin-top: 7px;
+    }
+
+    .submit-btn {
+      background: linear-gradient(90deg, #f7c873, #fbb034);
+      color: #242424;
+      padding: 12px 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.09em;
+      font-weight: bold;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      margin-top: 7px;
+      transition: background 0.2s;
+    }
+    .submit-btn:hover {
+      background: linear-gradient(90deg, #ffe47a, #fbb034);
+      color: #1b1b1b;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 1em;
+      color: #cacaca;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 14px 7px 10px 7px;
+      }
+      .price-table th, .price-table td {
+        padding: 4px 6px;
+        font-size: 0.97em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>EXHIBIT - SMUN 2025</h1>
+    <div class="subtitle">"Showcase Your Art, Frame Your Fame – Exhibit at SMUN 2025!"</div>
+    <h2>✨ Perks:</h2>
+    <ul class="perks">
+      <li>Your framed paintings & photographs displayed at Opening & Closing Ceremonies, Flagship Committees, and Socials.</li>
+      <li>Discounted tickets to SMUN 2025 socials.</li>
+      <li>Reach an audience of art lovers, delegates, and dignitaries.</li>
+    </ul>
+    <p>
+      <span class="highlight">📅 Event:</span> 8th–9th November 2025<br />
+      <span class="highlight">📍 Venue:</span> Indian Council for Cultural Relations (ICCR), Kolkata
+    </p>
+    <table class="price-table">
+      <thead>
+        <tr>
+          <th>Slot Type</th>
+          <th>Dimensions</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Small</td><td>Upto 16 X 20</td><td>₹350/-</td></tr>
+        <tr><td>Medium</td><td>Upto 24 X 36</td><td>₹500/-</td></tr>
+        <tr><td>Large</td><td>Upto 36 X 48</td><td>₹600/-</td></tr>
+        <tr><td>Panoramic</td><td>12 X 36, 16 X 48</td><td>₹550/-</td></tr>
+      </tbody>
+    </table>
+    <form action="http://localhost:5000/register-exhibit" method="POST" enctype="multipart/form-data">
+      <label>Painting/ Picture *</label>
+      <div class="radio-group">
+        <input type="radio" name="art_type" id="painting" value="Painting" required>
+        <label for="painting">Painting</label>
+        <input type="radio" name="art_type" id="picture" value="Picture" required>
+        <label for="picture">Picture</label>
+      </div>
+
+      <label>Choose Dimensions *</label>
+      <div class="radio-group">
+        <input type="radio" name="dimensions" id="small" value="Small" required>
+        <label for="small">Small</label>
+        <input type="radio" name="dimensions" id="medium" value="Medium" required>
+        <label for="medium">Medium</label>
+        <input type="radio" name="dimensions" id="large" value="Large" required>
+        <label for="large">Large</label>
+        <input type="radio" name="dimensions" id="panoramic" value="Panoramic" required>
+        <label for="panoramic">Panoramic</label>
+      </div>
+
+      <label for="artwork">Attach Soft Copy Of Painting/ Picture *</label>
+      <input type="file" name="artwork" id="artwork" accept=".jpg,.jpeg,.png,.pdf" required />
+
+      <label for="price_range">Kindly mention the price range at which you would like your artwork/picture to be sold. *</label>
+      <input type="text" name="price_range" id="price_range" required />
+
+      <label for="maps_link">Attach The Google Maps Link To your home (Pick Up address) *</label>
+      <input type="url" name="maps_link" id="maps_link" required />
+
+      <label for="name">Name *</label>
+      <input type="text" name="name" id="name" required />
+
+      <label for="phone">Phone Number *</label>
+      <input type="tel" name="phone" id="phone" pattern="[0-9]{10}" maxlength="10" required />
+
+      <label for="email">Email ID *</label>
+      <input type="email" name="email" id="email" required />
+
+      <label class="checkbox-label">
+        <input type="checkbox" name="declaration" required />
+        I hereby acknowledge that by submitting this form, I assure the Organising Committee Of SMUN 2025, that the art is my own creation and is duly framed.
+      </label>
+
+      <button type="submit" class="submit-btn">Submit Exhibit Application</button>
+    </form>
+    <p style="margin-top:18px;" class="highlight">
+      Special Discount For Delegates: Use code 'DELSMUN' for 10% off if you are an SMUN delegate.<br>
+      <span style="color:#ff4040;">*MONEY ONCE PAID IS NOT REFUNDABLE*</span>
+    </p>
+    <div class="footer">Regards,<br />Team SMUN</div>
+  </div>
+</body>
+</html>
